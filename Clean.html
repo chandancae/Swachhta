@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💧 Clean Water Awareness - Swachhta Campaign</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><path fill="%23007acc" d="M0,400 C300,300 600,500 900,400 C1000,350 1100,450 1200,400 V800 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 58, 138, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            color: #93c5fd;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #93c5fd;
+        }
+
+        .impact-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(45deg, #1e3a8a 0%, #1e40af 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #93c5fd;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #93c5fd;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .locations-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(45deg, #1e40af 0%, #3b82f6 100%);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .location-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.1));
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .location-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #93c5fd;
+            margin-bottom: 0.5rem;
+        }
+
+        .location-participants {
+            font-size: 1.1rem;
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .participants-number {
+            font-weight: bold;
+            color: #fbbf24;
+            font-size: 1.2rem;
+        }
+
+        .gallery-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(45deg, #3b82f6 0%, #60a5fa 100%);
+        }
+
+        .gallery-placeholder {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px dashed rgba(255,255,255,0.3);
+            margin-top: 2rem;
+        }
+
+        .gallery-text {
+            font-size: 1.2rem;
+            color: #93c5fd;
+            margin-bottom: 1rem;
+        }
+
+        .upload-instruction {
+            font-size: 1rem;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        .cta-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(45deg, #1e3a8a 0%, #1e40af 100%);
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #93c5fd, #60a5fa);
+            color: #1e3a8a;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #60a5fa, #93c5fd);
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-leaf {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .floating-leaf:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-leaf:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+        .floating-leaf:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 2s; }
+        .floating-leaf:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 3s; }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-leaf">💧</div>
+        <div class="floating-leaf">🚰</div>
+        <div class="floating-leaf">🏞️</div>
+        <div class="floating-leaf">🌊</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">🌱 Swachhta Campaign</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#locations">Locations</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">💧 Clean Water & Water Body Cleaning</h1>
+            <p class="hero-subtitle">
+                Raising awareness and taking action to ensure access to clean drinking water and protect our water bodies for sustainable communities.
+            </p>
+            <p class="hero-subtitle">
+                "Clean Water, Healthy Life" – Every drop counts for our future generations!
+            </p>
+        </div>
+    </section>
+
+    <!-- Impact Statistics -->
+    <section class="impact-section" id="impact">
+        <div class="container">
+            <h2 class="section-title">Water Awareness Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Activities Conducted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">160</div>
+                    <div class="stat-label">Community Participants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">₹8,100</div>
+                    <div class="stat-label">Investment Made</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Water Bodies Cleaned</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations-section" id="locations">
+        <div class="container">
+            <h2 class="section-title">Water Bodies & Community Locations</h2>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-name">Jhirki Water Body</div>
+                    <div class="location-participants">Community cleaning & awareness drive</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-name">Bodia Dakshini</div>
+                    <div class="location-participants">Water quality testing & education</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-name">Well at Hazari</div>
+                    <div class="location-participants">Well cleaning & maintenance</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-name">Wells at Sawang Dakshini</div>
+                    <div class="location-participants">Multiple well restoration project</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-name">Well at Khudgada Basti</div>
+                    <div class="location-participants">Community water source restoration</div>
+                </div>
+                <div class="location-card">
+                    <div class="location-name">Well at Garwadih Basti</div>
+                    <div class="location-participants">Clean water access improvement</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Water Awareness Gallery</h2>
+            <div class="gallery-placeholder">
+                <div class="gallery-text">📸 Photo Gallery Coming Soon</div>
+                <div class="upload-instruction">
+                    Photos of water awareness campaigns, cleaning activities, and community participation will be displayed here
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">Protect Our Water Resources</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+                Clean water is life. Join hands with us to preserve water bodies, ensure clean drinking water access, 
+                and create awareness for sustainable water management in our communities.
+            </p>
+            <a href="../index.html" class="cta-button">Explore More Initiatives</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.nav-bar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(30, 58, 138, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+            } else {
+                navbar.style.background = 'rgba(30, 58, 138, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Animate statistics on scroll
+        const animateStats = () => {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const text = stat.textContent;
+                if (text.includes('₹')) {
+                    // Handle currency values
+                    const target = parseInt(text.replace('₹', '').replace(',', ''));
+                    const increment = target / 100;
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = '₹' + Math.floor(current).toLocaleString();
+                    }, 20);
+                } else {
+                    // Handle regular numbers
+                    const target = parseInt(text.replace(',', ''));
+                    const increment = target / 100;
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = Math.floor(current);
+                    }, 20);
+                }
+            });
+        };
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('impact-section')) {
+                        animateStats();
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.impact-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
