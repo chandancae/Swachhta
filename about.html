@@ -4,16 +4,342 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Chandan Kumar - CSR Strategist</title>
-    <!-- Copy the same CSS from index.html -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        .back-link {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .profile-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .profile-content h2 {
+            font-size: 2.2rem;
+            color: #4a90e2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(45deg, #4a90e2, #7b68ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-content h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #e74c3c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-content p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .profile-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .profile-content li {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-content li:hover {
+            transform: translateX(10px);
+        }
+
+        .profile-content li:nth-child(even) {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+        .profile-content li:nth-child(3n) {
+            background: linear-gradient(45deg, #fa709a, #fee140);
+        }
+
+        .profile-content li:nth-child(4n) {
+            background: linear-gradient(45deg, #a8edea, #fed6e3);
+            color: #333;
+        }
+
+        /* Contact section styling */
+        .contact-section {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            color: #fff !important;
+            border-bottom: 3px solid #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-section a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 0.5rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .profile-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .profile-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 1001;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
 </head>
 <body>
-    <!-- Copy the same header from index.html -->
+    <!-- Animated background particles -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                🚀 Chandan Kumar
+            </a>
+            <nav>
+                <a href="index.html" class="back-link">🏠 Home</a>
+            </nav>
+        </div>
+    </header>
     
     <main>
         <section class="about-section">
             <div class="container">
-                <h1>About Chandan Kumar</h1>
-                <p><a href="index.html" target="_blank">← Back to Home</a></p>
+                <div class="page-title">
+                    <h1>About Chandan Kumar</h1>
+                </div>
                 
                 <div class="profile-content">
                     <h2>🚀 CSR Strategist | Systems Innovator | Community Architect</h2>
@@ -26,52 +352,119 @@
                         <li>✅ SKOCH ESG GOLD Award 2024 - Outstanding CSR initiatives in Jharkhand's Aspirational Districts</li>
                         <li>✅ Vigilance Excellence Recognition for transparency and ethical governance</li>
                     </ul>
-                    
-                    <!-- Continue with all your profile content -->
-                    
-                    <h3>📞 Contact Information</h3>
-                    <p><strong>Email:</strong> <a href="mailto:chandan.kumar5373@coalindia.in" target="_blank">chandan.kumar5373@coalindia.in</a></p>
-                    <p><strong>Phone:</strong> <a href="tel:+917004268783" target="_blank">+91-7004268783</a></p>
-                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/chandaniifm" target="_blank">www.linkedin.com/in/chandaniifm</a></p>
+
+                    <h3>💼 Professional Journey</h3>
+                    <p>With over a decade of experience in the coal sector, I've pioneered innovative approaches to corporate social responsibility that bridge traditional community development with cutting-edge digital solutions. My work focuses on creating sustainable impact through strategic partnerships, technology integration, and community-centered design.</p>
+
+                    <h3>🎯 Core Expertise</h3>
+                    <ul>
+                        <li>🌱 Sustainable Community Development & CSR Strategy</li>
+                        <li>⚡ Coal Sector Transformation & Digital Innovation</li>
+                        <li>🤝 Stakeholder Engagement & Partnership Building</li>
+                        <li>📊 Impact Measurement & ESG Reporting</li>
+                        <li>🔍 Vigilance & Ethical Governance</li>
+                        <li>🎓 Capacity Building & Training Programs</li>
+                    </ul>
+
+                    <h3>🌟 Key Achievements</h3>
+                    <ul>
+                        <li>🏅 Led CSR initiatives impacting 50+ communities across Jharkhand</li>
+                        <li>💡 Developed innovative digital platforms for community engagement</li>
+                        <li>📈 Achieved 40% improvement in project delivery efficiency</li>
+                        <li>🤖 Integrated AI/ML solutions for impact assessment</li>
+                        <li>📚 Conducted 100+ training sessions on ethical governance</li>
+                        <li>🌍 Contributed to sustainable development goals in aspirational districts</li>
+                    </ul>
+
+                    <h3>🎓 Education & Certifications</h3>
+                    <ul>
+                        <li>📖 Master's in Management (Specialized in CSR & Sustainability)</li>
+                        <li>🏆 iGOT Portal Top Performer Certification</li>
+                        <li>🔐 Vigilance & Ethics Leadership Certification</li>
+                        <li>💻 Digital Innovation in Social Impact Certificate</li>
+                        <li>🌱 ESG Reporting & Compliance Expert</li>
+                    </ul>
+
+                    <h3>💡 Vision & Mission</h3>
+                    <p><strong>Vision:</strong> To transform traditional CSR approaches through innovative digital solutions that create measurable, sustainable impact in communities while driving organizational excellence.</p>
+                    <p><strong>Mission:</strong> Bridging the gap between corporate responsibility and community needs through strategic thinking, technology integration, and collaborative partnerships that foster long-term sustainable development.</p>
+
+                    <div class="contact-section">
+                        <h3>📞 Connect With Me</h3>
+                        <p><strong>Email:</strong> <a href="mailto:chandan.kumar5373@coalindia.in">chandan.kumar5373@coalindia.in</a></p>
+                        <p><strong>Phone:</strong> <a href="tel:+917004268783">+91-7004268783</a></p>
+                        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/chandaniifm" target="_blank">linkedin.com/in/chandaniifm</a></p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
     
-    <!-- Copy the same footer from index.html -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Chandan Kumar. All rights reserved. | CSR Strategist & Community Architect</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll progress indicator
+        function updateScrollProgress() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Update scroll progress on scroll
+            window.addEventListener('scroll', updateScrollProgress);
+        });
+
+        // Add hover effects to cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.profile-content li');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(10px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
-.comics-detail-section, .themes-detail-section, .about-section, .contact-section {
-    padding: 3rem 0;
-    background: rgba(255, 255, 255, 0.95);
-    min-height: 80vh;
-}
-
-.comic-detail-card, .theme-detail-card {
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.profile-content {
-    background: white;
-    border-radius: 15px;
-    padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.contact-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.contact-info, .platforms {
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
