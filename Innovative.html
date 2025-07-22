@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Innovative Ideas for Swachhta Campaign in Kathara Area - CSR, Community Development, Sustainability"/>
   <title>💡 Innovative Ideas & Implementation - Swachhta Campaign</title>
-  <!-- Modern Glassmorphism & Grid Gallery CSS -->
+  <!-- Modern Glassmorphism & Gallery + Impact CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -73,13 +73,60 @@
       0% { opacity: 0; transform: translateY(30px);}
       100% { opacity: 1; transform: translateY(0);}
     }
+    /* Impact Grid */
+    .impact-section {
+      padding: 3rem 2rem 2rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .impact-grid {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 12px;
+      margin-bottom: 28px;
+    }
+    .impact-stat {
+      background: rgba(20, 30, 51, 0.77);
+      backdrop-filter: blur(10px);
+      padding: 28px 34px;
+      min-width: 150px;
+      border-radius: 17px;
+      box-shadow: 0 6px 22px 0 rgba(255,186,8,0.10);
+      border: 2px solid rgba(255,186,8,0.10);
+      text-align: center;
+      margin-bottom: 10px;
+      transition: transform 0.16s, box-shadow 0.14s;
+    }
+    .impact-stat:hover, .impact-stat:focus {
+      transform: scale(1.05);
+      box-shadow: 0 5px 25px 0 rgba(255,186,8,0.19);
+      outline: none;
+    }
+    .stat-value {
+      font-size: 2.3rem;
+      color: var(--accent);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      color: #ffeaa8;
+      font-size: 1.01rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
-      margin: 54px auto;
+      margin: 38px auto 54px auto;
       max-width: 1000px;
-      padding: 0 20px 60px 20px;
+      padding: 0 20px;
     }
     .photo-card {
       position: relative;
@@ -166,11 +213,14 @@
       outline: 2px solid #ffd166; opacity: 1;
     }
     #photoModal .modal-counter { font-size: 1.01rem; color: #f3ead1; font-weight: 700; margin: 0 8px;}
+    /* Responsiveness */
     @media (max-width:700px) {
       nav { padding: 0 10px; }
       .hero-title { font-size: 1.4rem;}
       .photo-card, .photo-card img { min-width: 120px; }
       #photoModal .modal-content { max-width: 96vw;}
+      .impact-grid { gap: 12px; }
+      .impact-stat { min-width: 110px; padding: 15px 10px; }
     }
     @media (max-width:490px) {
       #photoModal .modal-content { max-width: 99vw;}
@@ -179,10 +229,11 @@
   </style>
 </head>
 <body>
-  <!-- Navbar (optionally add or keep as in your site) -->
+  <!-- Navbar -->
   <nav id="navbar">
     <div class="navbar-left">Swachhta</div>
     <div class="navbar-links">
+      <a href="#impact">Impact</a>
       <a href="#gallery">Gallery</a>
       <a href="#cta">Join</a>
     </div>
@@ -197,15 +248,41 @@
     </div>
   </section>
 
+  <!-- Impact Section -->
+  <section class="impact-section" id="impact">
+    <h2 style="font-size:2rem;color:#ffba08;font-family:Montserrat,sans-serif;">Swachhta Campaign – Quick Impact</h2>
+    <div class="impact-grid">
+      <div class="impact-stat" tabindex="0">
+        <div class="stat-value">11</div>
+        <div class="stat-label">Innovative Projects</div>
+      </div>
+      <div class="impact-stat" tabindex="0">
+        <div class="stat-value">700+</div>
+        <div class="stat-label">Students Engaged</div>
+      </div>
+      <div class="impact-stat" tabindex="0">
+        <div class="stat-value">9</div>
+        <div class="stat-label">Institutions Involved</div>
+      </div>
+      <div class="impact-stat" tabindex="0">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Community Participation</div>
+      </div>
+    </div>
+  </section>
+
   <!-- Innovative Ideas Gallery Grid -->
-  <div class="photo-grid" id="photoGrid">
-    <!-- Gallery items will load here -->
-  </div>
+  <section id="gallery">
+    <h2 style="text-align:center;color:#ffba08;font-family:Montserrat,sans-serif;margin-bottom:12px;font-size:2rem;">Project Gallery: Swachhta Innovations</h2>
+    <div class="photo-grid" id="photoGrid">
+      <!-- Gallery items will load here -->
+    </div>
+  </section>
 
   <!-- Modal for Gallery (hidden by default) -->
   <div id="photoModal" style="display:none;align-items:center;justify-content:center;">
     <div class="modal-content" style="position:relative;">
-      <button class="modal-close" onclick="closeModal()" aria-label="Close Gallery Modal">&times;</button>
+      <button class="modal-close" id="modalCloseBtn" onclick="closeModal()" aria-label="Close Gallery Modal">&times;</button>
       <span class="modal-emoji" id="modalEmoji"></span>
       <img class="modal-img" id="modalImg" src="" alt="">
       <div class="modal-info">
@@ -220,9 +297,18 @@
     </div>
   </div>
 
+  <!-- CTA Section -->
+  <section id="cta" style="padding:2.5rem 0;text-align:center;">
+    <h2 style="font-family:Montserrat,sans-serif;color:#ffba08;">Become an Innovation Partner</h2>
+    <p style="max-width:600px;margin:12px auto 24px auto;color:#fff;opacity:0.85;font-size:1.13rem;">
+      Got a creative idea or want to collaborate? Join us on this journey for transformative Swachhta and sustainable community change.
+    </p>
+    <a class="cta-button" style="background:linear-gradient(90deg,#ffe08f,#ffba08);color:#072832;padding:16px 40px;border-radius:36px;font-weight:800;text-decoration:none;font-size:1.12rem;font-family:Montserrat,sans-serif;box-shadow:0 6px 16px rgba(255,186,8,0.15);transition:all 0.18s;" href="mailto:csrinnovation@yourorg.com">Join the Movement</a>
+  </section>
+
   <!-- JavaScript to load gallery dynamically and modal handling -->
   <script>
-    // Smooth navbar transition
+    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       var nav = document.getElementById('navbar');
       if(nav && window.scrollY > 15) nav.classList.add('scrolled');
@@ -369,7 +455,7 @@
     // Modal accessibility
     window.addEventListener("keydown", (e) => {
       const modal = document.getElementById("photoModal");
-      if (modal.style.display === "flex") {
+      if (modal && modal.style.display === "flex") {
         if (e.key === "Escape") closeModal();
         if (e.key === "ArrowRight") nextImage();
         if (e.key === "ArrowLeft") prevImage();
