@@ -165,50 +165,137 @@
             background: linear-gradient(45deg, #4f46e5 0%, #2563eb 100%);
             text-align: center;
         }
-        .gallery-placeholder {
-            padding: 2rem;
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .gallery-card {
             background: rgba(255,255,255,0.08);
-            border-radius: 15px;
-            margin-top: 2rem;
+            border-radius: 16px;
+            width: 285px;
+            transition: box-shadow 0.3s, transform 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery-card:hover, .gallery-card:focus { 
+            box-shadow: 0 8px 30px rgba(60,130,246,0.23);
+            transform: translateY(-4px) scale(1.025);
+        }
+        .gallery-img {
+            width: 100%; 
+            display: block;
+            height: 170px;
+            object-fit: cover;
+            background: #bfeafe;
+        }
+        .gallery-info {
+            padding: 1.1rem;
+        }
+        .gallery-emoji {
+            font-size: 1.9rem;
+        }
+        .gallery-title {
+            font-weight: bold;
+            font-size: 1.08rem;
+            color: #ffe98e;
+            margin: 0.2rem 0 0.32rem 0;
+        }
+        .gallery-desc {
+            font-size: 0.98rem;
+            color: #a2e6ff;
+            margin-bottom: 0.6rem;
         }
         .gallery-text {
+            font-size: 1rem;
+            color: #ddf7ff;
+        }
+        /* Modal Styles */
+        #galleryModal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: rgba(22, 37, 88, 0.94);
+            align-items: center; justify-content: center;
+            animation: fadeInUp 0.6s;
+        }
+        .modal-content {
+            background: linear-gradient(120deg, #60a5fa 0%, #3b82f6 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 95vw;
+            color: #fff;
+            position: relative;
+            text-align: left;
+            animation: fadeInUp 0.8s;
+            box-shadow: 0 8px 32px rgba(16,42,128,0.21);
+        }
+        .modal-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+        .modal-emoji {
+            font-size: 2.2rem;
+        }
+        .modal-title {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #fff;
-            margin-bottom: 1rem;
+            color: #fffbe8;
+            margin: 0.3rem 0 0.6rem 0;
         }
-        .upload-instruction {
-            font-size: 1rem;
-            color: #fff;
-            opacity: 0.8;
+        .modal-desc {
+            color: #e0e7ff;
+            font-size: 1.04rem;
+            margin-bottom: 1.2rem;
         }
-        .cta-section {
-            background: linear-gradient(45deg, #1e3a8a 0%, #3730a3 100%);
-            text-align: center;
+        .modal-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+        .modal-arrow, .modal-close {
+            background: #fbbf24;
+            border: none;
             color: #1e3a8a;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 1.48rem;
+            border-radius: 50%;
+            width: 38px; height: 38px;
+            cursor: pointer;
+            margin: 0 0.3rem;
+            transition: background 0.2s;
         }
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            background: linear-gradient(45deg, #f59e0b, #fbbf24);
+        .modal-arrow:hover, .modal-close:hover {
+            background: #f59e0b;
         }
-        /* Responsive Styles */
+        .modal-counter {
+            margin: 0 1rem;
+            color: #ffe98e;
+            font-size: 1.08rem;
+        }
         @media (max-width: 768px) {
             .hero-title { font-size: 2.3rem; }
             .hero-subtitle { font-size: 1rem; }
             .stats-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
             .locations-grid { grid-template-columns: 1fr; }
+            .gallery-grid { gap: 1.2rem; }
+        }
+        /* FadeInUp Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(44px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -308,14 +395,27 @@
     <section class="gallery-section" id="gallery">
         <div class="container">
             <h2 class="section-title">Innovation Gallery</h2>
-            <div class="gallery-placeholder">
-                <div class="gallery-text">📸 Innovation Photo Gallery Coming Soon</div>
-                <div class="upload-instruction">
-                    Photos of innovative activities, celebrations, and creative implementations will be displayed here.
-                </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items inserted by JS -->
             </div>
         </div>
     </section>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Close" onclick="closeModal()">&times;</button>
+            <div class="modal-emoji" id="modalEmoji"></div>
+            <img class="modal-img" id="modalImg" src="" alt="">
+            <div class="modal-title" id="modalTitle"></div>
+            <div class="modal-desc" id="modalDesc"></div>
+            <div class="modal-nav">
+                <button class="modal-arrow" id="prevBtn" aria-label="Previous" onclick="changePhoto(-1)">&#8592;</button>
+                <span class="modal-counter" id="modalCounter"></span>
+                <button class="modal-arrow" id="nextBtn" aria-label="Next" onclick="changePhoto(1)">&#8594;</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Call to Action Section -->
     <section class="cta-section">
@@ -325,8 +425,75 @@
                 Got an innovative idea for Swachhta? Let's brainstorm and implement it together!
                 Every creative solution makes a difference.
             </p>
-            <a href="index.html" class="cta-button">Explore More Initiatives</a>
+            <a href="#" class="cta-button">Explore More Initiatives</a>
         </div>
     </section>
+    <script>
+        // Gallery Data
+        const photos = [
+            { src: "images/Innovative1.jpg", emoji: "🚛✨", title: "Swachhta Rath Rolls In!", galleryDesc: "Awareness Rath at Sawang Colliery inspires action.", alt: "Swachhta Rath at Sawang Colliery spreading awareness", description: "The vibrant Swachhta Awareness Rath drives through Sawang Colliery's Project Office, spreading waves of change and cleanliness awareness among workers and residents. This mobile campaign represents innovation in community outreach." },
+            { src: "images/Innovative2.jpg", emoji: "📚🚍", title: "School Meets Swachhta", galleryDesc: "Students become eco-ambassadors at DAV, Sawang.", alt: "Swachhta Rath at DAV Public School, Sawang with students", description: "The Swachhta Rath arrives at DAV Public School, Sawang, turning students into eco-ambassadors through interactive awareness activities. Young minds are shaped to become future guardians of cleanliness." },
+            { src: "images/Innovative3.jpg", emoji: "🏢🧼", title: "Mission Clean Jarangdih", galleryDesc: "Campus energized for mindful hygiene at Jarangdih.", alt: "Swachhta Rath at Jarangdih Colliery Project Office", description: "The Swachhta Rath energizes the campus near the Project Office, Jarangdih Colliery, engaging staff and locals in a movement of mindful hygiene. Workplace transformation begins with awareness." },
+            { src: "images/Innovative4.jpg", emoji: "🏫🌿", title: "Awakening Young Minds", galleryDesc: "Environmental responsibility sparked in students.", alt: "Swachhta Awareness at Rajendra High School, Jarangdih", description: "Swachhta Awareness Rath halts at Rajendra High School, Jarangdih, igniting the spark of environmental responsibility in young hearts." },
+            { src: "images/Innovative5.jpg", emoji: "🏭🚨", title: "Clean Start at the Pit!", galleryDesc: "Coal workers motivated with cleanliness messages.", alt: "Swachhta Rath at Kathara Colliery Pit Office", description: "The Swachhta Rath enters the Pit Office, Kathara Colliery, motivating coal workers with cleanliness slogans and visual messages." },
+            { src: "images/Innovative6.jpeg", emoji: "🙏🌟", title: "Heroes Behind the Brooms", galleryDesc: "Cleaning staff celebrated for shaping a cleaner future.", alt: "Swachhta Karmchari Samman at GM Office, Kathara", description: "A heartfelt Swachhta Karmchari Samman ceremony at GM Office, Kathara celebrates the invisible hands shaping a cleaner future." },
+            { src: "images/Innovative7.jpeg", emoji: "🧹🎖️", title: "Frontline Champions Felicitated", galleryDesc: "Sustainability warriors of Swachhta mission honored.", alt: "Cleaning staff honored at GM Office, Kathara", description: "Cleaning staff are honored at the GM Office, Kathara, recognized as true sustainability warriors of the Swachhta mission." },
+            { src: "images/Innovative8.jpeg", emoji: "🌟👷", title: "Unsung Heroes of Hygiene", galleryDesc: "Dedication of sanitation staff saluted at GM Office.", alt: "Sanitation staff at GM Office, Kathara", description: "Swachhta Karmachari Samman event salutes the relentless dedication of sanitation staff at the GM Office, Kathara." },
+            { src: "images/Innovative9.jpeg", emoji: "🏆🎨", title: "Clean Champions Awarded!", galleryDesc: "Students inspired to be young Swachhta leaders.", alt: "Prizes at DAV Public School, Kathara", description: "The General Manager, Kathara Area, presents prizes at DAV Public School, Kathara, inspiring students to be young Swachhta leaders." },
+            { src: "images/Innovative10.jpeg", emoji: "🎓🌍", title: "Students Lead the Clean Way", galleryDesc: "Innovative student contributions recognized.", alt: "Students rewarded at DAV Public School, Kathara", description: "Rewarding school students at DAV Public School for their innovative contributions to cleanliness campaigns and awareness." },
+            { src: "images/Innovative11.jpeg", emoji: "🎖️✨", title: "Future of Clean India", galleryDesc: "Creative ideas and actions celebrated by GM.", alt: "Young achievers at DAV Public School, Kathara", description: "Young achievers at DAV Public School receive accolades from GM, Kathara, for their creative ideas and community-driven Swachhta actions." }
+        ];
+
+        // Render Gallery
+        const galleryGrid = document.getElementById('galleryGrid');
+        photos.forEach((photo, idx) => {
+            const card = document.createElement('div');
+            card.className = 'gallery-card fadeInUp-animation';
+            card.tabIndex = 0;
+            card.setAttribute('aria-label', photo.title + ': ' + photo.galleryDesc);
+            card.onclick = () => openModal(idx);
+            card.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') openModal(idx); };
+            card.innerHTML = `
+                <img class="gallery-img" src="${photo.src}" alt="${photo.alt}" loading="lazy" />
+                <div class="gallery-info">
+                    <div class="gallery-emoji">${photo.emoji}</div>
+                    <div class="gallery-title">${photo.title}</div>
+                    <div class="gallery-desc">${photo.galleryDesc}</div>
+                    <div class="gallery-text"><span style="opacity:0.82;">See more…</span></div>
+                </div>
+            `;
+            galleryGrid.appendChild(card);
+        });
+
+        // Modal logic
+        let curPhoto = 0;
+        function openModal(index) {
+            curPhoto = index;
+            document.getElementById('galleryModal').style.display = 'flex';
+            showPhoto(index);
+        }
+        function closeModal() {
+            document.getElementById('galleryModal').style.display = 'none';
+        }
+        function changePhoto(dir) {
+            curPhoto = (curPhoto + dir + photos.length) % photos.length;
+            showPhoto(curPhoto);
+        }
+        function showPhoto(i) {
+            document.getElementById('modalImg').src = photos[i].src;
+            document.getElementById('modalImg').alt = photos[i].alt;
+            document.getElementById('modalEmoji').textContent = photos[i].emoji;
+            document.getElementById('modalTitle').textContent = photos[i].title;
+            document.getElementById('modalDesc').textContent = photos[i].description;
+            document.getElementById('modalCounter').textContent = (i + 1) + ' / ' + photos.length;
+        }
+        window.addEventListener('keydown', e => {
+            if (document.getElementById('galleryModal').style.display === 'flex') {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') changePhoto(1);
+                if (e.key === 'ArrowLeft') changePhoto(-1);
+            }
+        });
+    </script>
 </body>
 </html>
