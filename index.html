@@ -630,6 +630,466 @@
         </div>
         <p>&copy; 2025 Swachhta Pakhwada Campaign - CCL Kathara. Designed by Chandan Kumar.</p>
     </footer>
-<!-- Add this to your HTML --> <div class="visitor-counter"> <h3>👥 Visitors: <span id="visitor-count">0</span></h3> </div> <script> // Simple visitor counter function updateVisitorCount() { let count = localStorage.getItem('visitorCount') || 0; count = parseInt(count) + 1; localStorage.setItem('visitorCount', count); document.getElementById('visitor-count').textContent = count; } // Update counter when page loads document.addEventListener('DOMContentLoaded', updateVisitorCount); </script> <style> .visitor-counter { background: #4CAF50; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 20px 0; } </style>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Visitor Counter - Starting from 1145</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #2E7D32, #4CAF50);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2E7D32;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Visitor Counter Styles */
+        .visitor-counter {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .visitor-counter::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .counter-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .counter-title {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            opacity: 0.9;
+        }
+
+        .counter-display {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .counter-number {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: countUp 2.5s ease-out;
+            font-family: 'Courier New', monospace;
+        }
+
+        @keyframes countUp {
+            0% { 
+                transform: scale(0.3) rotateY(180deg); 
+                opacity: 0; 
+            }
+            50% { 
+                transform: scale(1.1) rotateY(90deg); 
+            }
+            100% { 
+                transform: scale(1) rotateY(0deg); 
+                opacity: 1; 
+            }
+        }
+
+        .counter-label {
+            font-size: 1.1em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .counter-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 5px;
+            min-width: 100px;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin-top: 3px;
+        }
+
+        /* Code Implementation Section */
+        .implementation {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .implementation h3 {
+            color: #2E7D32;
+            margin-top: 0;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+
+        .copy-btn:hover {
+            background: #45a049;
+        }
+
+        .highlight {
+            background: #ffd54f;
+            color: #000;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .note strong {
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌱 Swachhta Campaign</h1>
+            <p>Visitor Counter Demo - Starting from 1145</p>
+        </div>
+
+        <!-- Live Counter Demo -->
+        <div class="visitor-counter">
+            <div class="counter-content">
+                <div class="counter-title">📊 Website Visitors</div>
+                <div class="counter-display">
+                    <div class="counter-number" id="mainCounter">1145</div>
+                    <div class="counter-label">Total Visitors</div>
+                </div>
+                
+                <div class="counter-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="todayCounter">12</span>
+                        <div class="stat-label">Today</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="weekCounter">87</span>
+                        <div class="stat-label">This Week</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="monthCounter">324</span>
+                        <div class="stat-label">This Month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Code -->
+        <div class="implementation">
+            <h3>🛠️ Implementation Code for Your Website</h3>
+            
+            <div class="note">
+                <strong>📝 Note:</strong> This counter will start from 1145 and increment by 1 for each new visitor. The count is stored in the browser's localStorage.
+            </div>
+
+            <h4>HTML + CSS + JavaScript (Complete Solution):</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre>&lt;!-- Add this CSS to your existing stylesheet or in a &lt;style&gt; tag --&gt;
+&lt;style&gt;
+.visitor-counter {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.visitor-counter::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    animation: shine 4s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.counter-content {
+    position: relative;
+    z-index: 2;
+}
+
+.counter-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-family: 'Courier New', monospace;
+}
+
+.counter-label {
+    font-size: 1.1em;
+    margin-top: 8px;
+    opacity: 0.9;
+}
+&lt;/style&gt;
+
+&lt;!-- Add this HTML where you want the counter to appear --&gt;
+&lt;div class="visitor-counter"&gt;
+    &lt;div class="counter-content"&gt;
+        &lt;div class="counter-number" id="visitor-count"&gt;<span class="highlight">1145</span>&lt;/div&gt;
+        &lt;div class="counter-label"&gt;👥 Total Visitors&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// Visitor counter starting from 1145
+function updateVisitorCount() {
+    const INITIAL_COUNT = <span class="highlight">1145</span>; // Starting point
+    const STORAGE_KEY = 'swachhta_visitor_count';
+    
+    // Get stored count or start from initial count
+    let storedCount = localStorage.getItem(STORAGE_KEY);
+    
+    if (storedCount === null) {
+        // First time visitor - initialize with base count
+        localStorage.setItem(STORAGE_KEY, INITIAL_COUNT.toString());
+        displayCount(INITIAL_COUNT);
+    } else {
+        // Returning visitor - increment count
+        let currentCount = parseInt(storedCount) + 1;
+        localStorage.setItem(STORAGE_KEY, currentCount.toString());
+        displayCount(currentCount);
+    }
+}
+
+function displayCount(count) {
+    const counterElement = document.getElementById('visitor-count');
+    if (counterElement) {
+        // Animate the counter
+        animateCounter(counterElement, count);
+    }
+}
+
+function animateCounter(element, targetValue) {
+    const duration = 2000;
+    const startValue = 0;
+    const increment = targetValue / (duration / 16);
+    let currentValue = startValue;
+    
+    const timer = setInterval(() =&gt; {
+        currentValue += increment;
+        if (currentValue &gt;= targetValue) {
+            currentValue = targetValue;
+            clearInterval(timer);
+        }
+        element.textContent = Math.floor(currentValue);
+    }, 16);
+}
+
+// Initialize counter when page loads
+document.addEventListener('DOMContentLoaded', updateVisitorCount);
+&lt;/script&gt;</pre>
+            </div>
+
+            <h4>Simple Version (Minimal Code):</h4>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+<pre>&lt;div style="background: #4CAF50; color: white; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0;"&gt;
+    &lt;h3&gt;👥 Visitors: &lt;span id="visitor-count"&gt;<span class="highlight">1145</span>&lt;/span&gt;&lt;/h3&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function updateVisitorCount() {
+    const INITIAL_COUNT = <span class="highlight">1145</span>;
+    let count = localStorage.getItem('swachhta_visitors');
+    
+    if (count === null) {
+        count = INITIAL_COUNT;
+    } else {
+        count = parseInt(count) + 1;
+    }
+    
+    localStorage.setItem('swachhta_visitors', count);
+    document.getElementById('visitor-count').textContent = count;
+}
+
+document.addEventListener('DOMContentLoaded', updateVisitorCount);
+&lt;/script&gt;</pre>
+            </div>
+
+            <div class="note">
+                <strong>🚀 Quick Setup:</strong>
+                <ol>
+                    <li>Copy either code version above</li>
+                    <li>Paste it into your <code>index.html</code> file</li>
+                    <li>Change <span class="highlight">1145</span> to your desired starting number</li>
+                    <li>Save and commit to GitHub</li>
+                    <li>Your counter will start from 1145 and increment for each new visitor!</li>
+                </ol>
+            </div>
+
+            <div class="note">
+                <strong>⚙️ Customization Options:</strong>
+                <ul>
+                    <li><strong>Starting Number:</strong> Change <code>INITIAL_COUNT = 1145</code> to any number</li>
+                    <li><strong>Storage Key:</strong> Change <code>'swachhta_visitors'</code> to make it unique</li>
+                    <li><strong>Colors:</strong> Modify the background color from <code>#4CAF50</code></li>
+                    <li><strong>Animation:</strong> Adjust animation duration or remove it entirely</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo functionality
+        function animateCounterDemo() {
+            const baseCount = 1145;
+            const additionalVisits = Math.floor(Math.random() * 50) + 10;
+            const finalCount = baseCount + additionalVisits;
+            
+            // Animate main counter
+            animateCounter(document.getElementById('mainCounter'), finalCount, 3000);
+            
+            // Update other counters
+            setTimeout(() => {
+                document.getElementById('todayCounter').textContent = Math.floor(Math.random() * 25) + 5;
+                document.getElementById('weekCounter').textContent = Math.floor(Math.random() * 150) + 50;
+                document.getElementById('monthCounter').textContent = Math.floor(Math.random() * 400) + 200;
+            }, 1000);
+        }
+
+        function animateCounter(element, targetValue, duration = 2000) {
+            const startValue = 1145;
+            const totalChange = targetValue - startValue;
+            const increment = totalChange / (duration / 16);
+            let currentValue = startValue;
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(currentValue);
+            }, 16);
+        }
+
+        function copyCode(button) {
+            const codeBlock = button.parentNode.querySelector('pre');
+            const textArea = document.createElement('textarea');
+            textArea.value = codeBlock.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = 'Copy';
+            }, 2000);
+        }
+
+        // Initialize demo
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(animateCounterDemo, 500);
+        });
+    </script>
+</body>
+</html>
+ </body>
 </html>
