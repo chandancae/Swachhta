@@ -1,350 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌳 Tree Plantation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #2E7D32, #4CAF50, #81C784);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="trees" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><circle cx="100" cy="150" r="30" fill="%23388E3C" opacity="0.1"/><rect x="95" y="150" width="10" height="40" fill="%23795548" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23trees)"/></svg>');
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            font-style: italic;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .hero .description {
-            font-size: 1.2rem;
-            max-width: 800px;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* Innovation Highlights - Single Row */
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .highlight-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .highlight-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .highlight-card .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .highlight-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #E8F5E8;
-        }
-
-        .highlight-card p {
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #F1F8E9;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            .highlights-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .hero .description {
-                font-size: 1rem;
-            }
-            
-            .section h2 {
-                font-size: 2rem;
-            }
-            
-            .highlights-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .highlight-card {
-                padding: 1.5rem;
-            }
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #C8E6C9;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1.2rem;
-            margin-top: 0.5rem;
-            color: #E8F5E8;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            margin-top: 2rem;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            font-weight: bold;
-        }
-
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .floating-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Trees – CSR Project Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: linear-gradient(135deg, #0a2540 0%, #12294d 80%);
+      --accent: #ffba08;
+      --accent-hover: #ffd166;
+      --glass: rgba(18, 41, 77, 0.55);
+      --glass-dark: rgba(10, 37, 64, 0.75);
+      --stat-bg: rgba(20, 30, 51, 0.77);
+      --feature-bg: rgba(0,0,0,0.14);
+    }
+    html {
+      scroll-behavior: smooth;
+      background: #111828;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      background: var(--primary-bg);
+      color: #f5f5fa;
+      min-height: 100vh;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 999;
+      display: flex;
+      align-items: center; justify-content: space-between;
+      background: var(--glass);
+      backdrop-filter: blur(16px) saturate(160%);
+      border-bottom: 1.5px solid #233056;
+      box-shadow: 0 4px 22px 0 rgba(20,36,62,0.04);
+      transition: background 0.5s, box-shadow 0.5s;
+      padding: 0 34px;
+      height: 64px;
+    }
+    nav.scrolled {
+      background: var(--glass-dark);
+      box-shadow: 0 3px 18px 0 rgba(20,36,62,0.16);
+    }
+    .navbar-left {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      text-shadow: 0 1px 8px rgba(255,229,91,0.07);
+    }
+    .navbar-links a {
+      color: #f5f5fa;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.09rem;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .navbar-links a:after {
+      content: '';
+      display: block;
+      border-bottom: 2px solid var(--accent);
+      transform: scaleX(0);
+      transition: 0.25s;
+      margin-top: 3px;
+    }
+    .navbar-links a:hover, .navbar-links a:focus {
+      color: var(--accent-hover);
+    }
+    .navbar-links a:focus:after, .navbar-links a:hover:after {
+      transform: scaleX(1);
+    }
+    .bg-float {
+      pointer-events: none;
+      position: fixed;
+      z-index: 1;
+    }
+    .bg-float1 {
+      top: 90px; left: 6vw; width: 88px; opacity: 0.23; animation: floatTree 6s infinite ease-in-out;
+    }
+    .bg-float2 {
+      top: 60%; left: 90vw; width: 60px; opacity: 0.2; animation: floatTreeRev 7s infinite ease-in-out;
+    }
+    .bg-float3 {
+      top: 62vh; left: 8vw; width: 61px; opacity: 0.22; animation: floatTree 9s infinite alternate ease-in;
+    }
+    @keyframes floatTree {
+      0%   { transform: translateY(0) scale(1);}
+      50%  { transform: translateY(-27px) scale(1.08);}
+      100% { transform: translateY(0) scale(1);}
+    }
+    @keyframes floatTreeRev {
+      0%   { transform: translateY(0) scale(1);}
+      50%  { transform: translateY(22px) scale(1.03);}
+      100% { transform: translateY(0) scale(1);}
+    }
+    .hero {
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      min-height: 70vh; padding-top: 100px;
+      position: relative; z-index: 10; text-align: center;
+    }
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 3.1rem;
+      color: var(--accent);
+      text-shadow: 0 3px 12px rgba(255,226,117,0.14);
+      margin-bottom: 16px;
+      animation: pulseTitle 1.8s infinite alternate;
+    }
+    @keyframes pulseTitle {
+      0% { text-shadow: 0 2px 14px rgba(255,229,91,0.13);}
+      100% { text-shadow: 0 6px 40px rgba(255,229,91,0.45);}
+    }
+    .hero-quote {
+      font-size: 1.28rem; color: #f6e6b8; font-weight: 600;
+      margin-bottom: 16px; letter-spacing: 0.02em; animation: fadeInUp 0.8s;
+    }
+    .hero-desc {
+      font-size: 1.08rem; color: #dde6f0; margin-bottom: 28px; max-width: 600px; animation: fadeInUp 1s;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    .impact-stats {
+      display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 34px; margin-bottom: 48px;
+      z-index: 40; position: relative;
+    }
+    .stat-card {
+      background: var(--stat-bg);
+      backdrop-filter: blur(10px) saturate(170%);
+      padding: 30px 38px; min-width: 165px;
+      border-radius: 18px;
+      box-shadow: 0 6px 22px 0 rgba(255,186,8,0.08);
+      border: 2.6px solid rgba(255,186,8,0.09);
+      text-align: center; margin-bottom: 18px;
+      transition: transform 0.17s, box-shadow 0.16s;
+    }
+    .stat-card:hover {
+      transform: scale(1.06);
+      box-shadow: 0 4px 25px 0 rgba(255,186,8,0.19);
+    }
+    .stat-count {
+      font-size: 2.6rem;
+      color: var(--accent);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; margin-bottom: 8px;
+    }
+    .stat-label {
+      color: #ffeaa8; font-size: 1.09rem; font-weight: 600; letter-spacing: 0.02em;
+    }
+    .highlights-grid {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 26px; max-width: 900px; margin: 0 auto 60px auto; z-index: 10; position: relative; padding: 0 14px;
+    }
+    .highlight-card {
+      background: var(--feature-bg); backdrop-filter: blur(8px);
+      padding: 32px 20px 22px 20px;
+      border-radius: 20px;
+      border: 1.7px solid rgba(255,186,8,0.11);
+      box-shadow: 0 4px 18px 0 rgba(42,35,19,0.03);
+      text-align: center; color: #f3ead1;
+      transition: transform 0.15s, box-shadow 0.18s;
+    }
+    .highlight-card:hover, .highlight-card:focus {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 7px 29px 0 rgba(255,176,12,0.14);
+      border-color: var(--accent-hover);
+    }
+    .highlight-icon { font-size: 2.9rem; margin-bottom: 12px; display: block;}
+    .highlight-title {
+      font-size: 1.25rem; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      margin-bottom: 10px; color: var(--accent);
+    }
+    .highlight-desc { font-size: 1.01rem; color: #eeddb0; opacity: 0.93;}
+    .cta-section { text-align: center; margin: 45px 0 25px 0; z-index: 19; position: relative;}
+    .cta-title { font-family: 'Montserrat',sans-serif; font-size: 1.32rem; color: #ffd166; margin-bottom: 12px; font-weight: 700;}
+    .cta-btn {
+      padding: 15px 40px; font-size: 1.21rem; font-family: 'Montserrat',sans-serif;
+      color: #072832; font-weight: 800; border-radius: 40px;
+      background: linear-gradient(94deg,#ffe08f 0%, #ffba08 55%,#ffeaa8 100%);
+      border: none; box-shadow: 0 6px 14px rgba(255,186,8,0.19); cursor: pointer;
+      transition: background 0.25s, transform 0.18s;
+    }
+    .cta-btn:hover, .cta-btn:focus {
+      background: linear-gradient(90deg, #ffd166 0%, #ffba08 70%);
+      color: #12294d; transform: scale(1.06);
+    }
+    .gallery-section { margin: 60px auto 30px auto; padding: 0 14px; max-width: 1050px; }
+    .gallery-title {
+      font-size: 2.1rem; color: var(--accent); font-weight: 800; text-align: center;
+      margin-bottom: 24px; font-family: 'Montserrat',sans-serif; letter-spacing: 0.01em;
+    }
+    .gallery-wrapper {
+      display: flex; flex-wrap: wrap; gap: 26px; justify-content: center; align-items: stretch;
+    }
+    .gallery-card {
+      background: rgba(30,41,67,0.34); backdrop-filter: blur(10px); border-radius: 16px;
+      box-shadow: 0 10px 32px 0 rgba(86,99,156,0.10);
+      overflow: hidden; min-width: 210px; width: 230px; margin-bottom: 24px;
+      border: 2px solid rgba(255,186,8,0.08); position: relative; cursor: pointer;
+      transition: transform 0.17s, box-shadow 0.22s, border-color 0.18s; outline: none;
+    }
+    .gallery-card:hover, .gallery-card:focus {
+      box-shadow: 0 8px 48px 0 rgba(255,186,8,0.14);
+      transform: scale(1.04); border-color: var(--accent-hover); z-index: 5;
+    }
+    .gallery-card img {
+      width: 100%; height: 170px; object-fit: cover;
+      border-top-left-radius: 13px; border-top-right-radius: 13px;
+      transition: filter 0.25s, opacity 0.23s;
+    }
+    .gallery-card:hover img { opacity: 0.78; filter: blur(1px);}
+    .gallery-card .card-desc {
+      padding: 14px 12px 10px 12px;
+      color: #eeddb0; text-align: center; background: rgba(21,29,49,0.80);
+    }
+    .gallery-modal {
+      display: none; position: fixed; z-index: 1002; left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(21,32,50,0.80); backdrop-filter: blur(6px); justify-content: center;
+      align-items: center; animation: fadeInUp 0.5s;
+    }
+    .gallery-modal.active { display: flex;}
+    .modal-content {
+      position: relative; background: rgba(255,255,255,0.05); border-radius: 23px; overflow: hidden;
+      box-shadow: 0 13px 54px 0 rgba(53,52,36,0.31); max-width: 670px; width: 91vw;
+      padding: 0; display: flex; flex-direction: column; align-items: center; animation: modalZoom 0.27s;
+    }
+    @keyframes modalZoom { from {transform: scale(0.96);} to {transform: scale(1);}}
+    .modal-img {
+      display: block; width: 100%; max-height: 400px; object-fit: cover;
+      border-top-left-radius: 20px; border-top-right-radius: 20px;
+    }
+    .modal-info {
+      padding: 18px 26px 18px 26px; background: rgba(14, 18, 27, 0.8); width: 100%;
+      box-sizing: border-box; text-align: center;
+    }
+    .modal-title {
+      font-family: 'Montserrat',sans-serif; font-size: 1.3rem; font-weight: 800;
+      color: var(--accent); margin-bottom: 10px;letter-spacing:0.01em;
+    }
+    .modal-desc { color: #eeddb0; font-size: 1.05rem; margin-bottom: 7px;}
+    .modal-close {
+      position: absolute; top: 18px; right: 16px; background: rgba(255,255,200,0.27);
+      color: #ffa500; font-size: 2.0rem; cursor: pointer; border: none; border-radius: 50%;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; z-index: 1020;
+    }
+    .modal-close:hover, .modal-close:focus {
+      background: var(--accent-hover);
+      color: #072832; outline: 2px solid #ffd166;
+    }
+    .modal-arrows {
+      display: flex; justify-content: space-between; align-items: center; margin-top: 7px;
+      width: 97%; margin: 0 auto;
+    }
+    .modal-arrow {
+      background: none; border: none; font-size: 2.25rem; color: var(--accent);
+      cursor: pointer; margin: 0 5px; border-radius: 50%;
+      width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; opacity: 0.72;
+    }
+    .modal-arrow:focus, .modal-arrow:hover {
+      background: rgba(255,225,91,0.21); color: #12294d; outline: 2px solid #ffd166; opacity: 1;
+    }
+    .modal-counter { font-size: 1.05rem; color: #f3ead1; font-weight: 700; margin: 0 10px;}
+    @media (max-width: 900px) {
+      .gallery-wrapper { gap: 19px;}
+      .impact-stats { gap: 24px;}
+    }
+    @media (max-width:700px) {
+      nav { padding: 0 9px; }
+      .hero-title { font-size: 1.95rem;}
+      .impact-stats { gap: 15px;}
+      .stat-card { padding: 21px 13px; min-width: 114px;}
+      .gallery-card, .gallery-card img { min-width: 162px; width: 90vw; max-width: 220px; }
+      .modal-content { max-width: 96vw;}
+    }
+    @media (max-width:490px) {
+      .modal-content { max-width: 99vw;}
+      .navbar-links a { font-size: 0.94rem; margin: 0 6px;}
+    }
+    .gallery-card:focus-visible { outline: 3px solid #ffd166; }
+    .modal-close:focus-visible, .modal-arrow:focus-visible { outline: 3px solid #ffd166; }
+  </style>
 </head>
 <body>
-    <div class="floating-particles">
-        <div class="particle" style="left: 10%; top: 20%; width: 10px; height: 10px; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 80%; top: 30%; width: 8px; height: 8px; animation-delay: 1s;"></div>
-        <div class="particle" style="left: 60%; top: 60%; width: 12px; height: 12px; animation-delay: 2s;"></div>
-        <div class="particle" style="left: 30%; top: 80%; width: 6px; height: 6px; animation-delay: 3s;"></div>
-        <div class="particle" style="left: 90%; top: 70%; width: 14px; height: 14px; animation-delay: 4s;"></div>
+  <!-- Floating Trees -->
+  <img src="https://cdn.jsdelivr.net/gh/chandancae/tree-icons/tree-simple.svg" class="bg-float bg-float1" alt="" aria-hidden="true">
+  <img src="https://cdn.jsdelivr.net/gh/chandancae/tree-icons/tree-round.svg" class="bg-float bg-float2" alt="" aria-hidden="true">
+  <img src="https://cdn.jsdelivr.net/gh/chandancae/tree-icons/tree-nature.svg" class="bg-float bg-float3" alt="" aria-hidden="true">
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="navbar-left">Swachhta</div>
+    <div class="navbar-links">
+      <a href="#impact">Impact</a>
+      <a href="#innovation">Innovation</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#cta">Join</a>
     </div>
+  </nav>
 
-    <section class="hero">
-        <h1>🌳 Tree Plantation</h1>
-        <p class="subtitle">"Plant Today, Breathe Tomorrow"</p>
-        <p class="description">Leading massive plantation drives across educational institutions and communities, creating green corridors for environmental transformation. When students and workers unite, forests flourish! Every tree planted is a step towards a sustainable future. Together, we can create green corridors that transform our communities.</p>
-        <a href="#highlights" class="cta-button">Explore Our Impact</a>
-    </section>
+  <section class="hero">
+    <div class="hero-title">
+      Trees for Tomorrow 🚀
+    </div>
+    <div class="hero-quote">
+      "Plant Today, Breathe Tomorrow" — When students and workers unite, forests flourish!
+    </div>
+    <div class="hero-desc">
+      Leading massive plantation drives across educational institutions and communities, creating <b>green corridors</b> for environmental transformation. Every tree planted is a step towards a sustainable future. Together, we can create green corridors that transform our communities.
+    </div>
+  </section>
 
-    <section class="section" id="highlights">
-        <h2>🚀 Innovation Highlights</h2>
-        <div class="highlights-grid">
-            <div class="highlight-card">
-                <span class="icon">🌱</span>
-                <h3>Smart Plantation</h3>
-                <p>AI-driven site selection and species matching for optimal growth and environmental impact in diverse ecosystems.</p>
-            </div>
-            <div class="highlight-card">
-                <span class="icon">📱</span>
-                <h3>Digital Tracking</h3>
-                <p>Real-time monitoring system with GPS tagging and growth analytics for comprehensive forest management.</p>
-            </div>
-            <div class="highlight-card">
-                <span class="icon">🤝</span>
-                <h3>Community Engagement</h3>
-                <p>Collaborative platform connecting schools, colleges, and local communities for sustainable green initiatives.</p>
-            </div>
-            <div class="highlight-card">
-                <span class="icon">🔄</span>
-                <h3>Circular Impact</h3>
-                <p>Creating self-sustaining green ecosystems with long-term environmental and social benefits for future generations.</p>
-            </div>
+  <!-- Impact Stats -->
+  <section class="impact-stats" id="impact">
+    <div class="stat-card" tabindex="0">
+      <div class="stat-count">10</div>
+      <div class="stat-label">CSR Projects</div>
+    </div>
+    <div class="stat-card" tabindex="0">
+      <div class="stat-count">750+</div>
+      <div class="stat-label">Trees Planted</div>
+    </div>
+    <div class="stat-card" tabindex="0">
+      <div class="stat-count">100%</div>
+      <div class="stat-label">Success Rate</div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="highlights-grid" id="innovation">
+    <div class="highlight-card" tabindex="0">
+      <div class="highlight-icon" aria-hidden="true">🌱</div>
+      <div class="highlight-title">Community-Driven</div>
+      <div class="highlight-desc">Empowering locals & students as true climate stewards for grassroots change.</div>
+    </div>
+    <div class="highlight-card" tabindex="0">
+      <div class="highlight-icon" aria-hidden="true">🌍</div>
+      <div class="highlight-title">Digital Storytelling</div>
+      <div class="highlight-desc">Interactive multimedia (CSRflix/InsightFlix) amplifies real impact and learning.</div>
+    </div>
+    <div class="highlight-card" tabindex="0">
+      <div class="highlight-icon" aria-hidden="true">📈</div>
+      <div class="highlight-title">Data Transparency</div>
+      <div class="highlight-desc">Live dashboard tracks plantation, survival, and project metrics in real-time.</div>
+    </div>
+    <div class="highlight-card" tabindex="0">
+      <div class="highlight-icon" aria-hidden="true">🔗</div>
+      <div class="highlight-title">Inclusive Governance</div>
+      <div class="highlight-desc">Blends Indian values (Dharma, Seva) and global ESG for ethical impact at scale.</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="cta">
+    <div class="cta-title">
+      Join Us! Be part of the next plantation wave.
+    </div>
+    <button class="cta-btn" onclick="window.open('https://forms.gle/example', '_blank');" aria-label="Sign up for plantation drive">
+      Become a Green Champion
+    </button>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-title">Project Gallery</div>
+    <div class="gallery-wrapper" id="galleryCards"></div>
+  </section>
+
+  <div class="gallery-modal" id="galleryModal" aria-modal="true" role="dialog" tabindex="-1">
+    <div class="modal-content">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close Gallery Modal">&times;</button>
+      <img class="modal-img" id="modalImg" src="" alt="">
+      <div class="modal-info">
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <div class="modal-arrows">
+          <button class="modal-arrow" id="modalPrev" aria-label="Show Previous Image">&#8592;</button>
+          <div class="modal-counter" id="modalCounter"></div>
+          <button class="modal-arrow" id="modalNext" aria-label="Show Next Image">&#8594;</button>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <section class="section">
-        <h2>📊 Our Green Impact</h2>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">25,000+</span>
-                <span class="stat-label">Trees Planted</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">150+</span>
-                <span class="stat-label">Institutions Covered</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">80%</span>
-                <span class="stat-label">Survival Rate</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">500+</span>
-                <span class="stat-label">Volunteers Engaged</span>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards
-        document.querySelectorAll('.highlight-card, .stat-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease';
-            observer.observe(card);
-        });
-
-        // Dynamic particle generation
-        function createParticles() {
-            const container = document.querySelector('.floating-particles');
-            for (let i = 0; i < 10; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.width = (Math.random() * 8 + 4) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                container.appendChild(particle);
-            }
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      var nav = document.getElementById('navbar');
+      if(window.scrollY > 15) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+    // Smooth scroll for nav links
+    document.querySelectorAll('.navbar-links a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if(this.hash) {
+          e.preventDefault();
+          document.querySelector(this.hash).scrollIntoView({behavior: 'smooth'});
         }
+      });
+    });
 
-        createParticles();
-    </script>
+    // Gallery Data – Updated Titles & Descriptions
+    const galleryImages = [
+      { src: "images/TP1.jpeg",  title: "Distribution of Fruit Bearing Trees at GM Office", desc: "Fruit trees provided to community leaders at GM Office.", alt: "Sapling distribution at GM Office" },
+      { src: "images/TP2.jpeg",  title: "Fruit Trees to be Distributed", desc: "Collection of fruit trees ready for distribution to beneficiaries.", alt: "Fruit trees arranged for distribution" },
+      { src: "images/TP3.jpeg",  title: "Plantation at KB College, Bermo", desc: "Students and volunteers planting saplings at KB College, Bermo.", alt: "Tree plantation at KB College, Bermo" },
+      { src: "images/TP4.jpeg",  title: "Distribution of Trees at DAV Kathara", desc: "Community engagement: saplings distributed at DAV Kathara campus.", alt: "Tree sapling distribution at DAV Kathara" },
+      { src: "images/TP5.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Launch of plantation project at DAV Sawang, uniting students and staff.", alt: "Plantation event at DAV Sawang" },
+      { src: "images/TP6.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Continued effort: more trees planted at DAV Sawang.", alt: "Tree plantation activity at DAV Sawang" },
+      { src: "images/TP7.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Volunteers prepare and plant saplings at DAV Sawang.", alt: "Volunteers planting trees at DAV Sawang" },
+      { src: "images/TP8.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Sustained plantation initiatives with local participation at DAV Sawang.", alt: "Ongoing plantation at DAV Sawang" },
+      { src: "images/TP9.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Community and students collaborating on tree plantation at DAV Sawang.", alt: "Community involvement at DAV Sawang plantation" },
+      { src: "images/TP10.jpeg", title: "Plantation at KB College, Bermo", desc: "Closing phase of green corridor project at KB College, Bermo.", alt: "Final phase plantation at KB College" }
+    ];
+
+    // Populate gallery
+    const galleryContainer = document.getElementById('galleryCards');
+    galleryImages.forEach((img, i) => {
+      const card = document.createElement('div');
+      card.className = 'gallery-card';
+      card.tabIndex = 0;
+      card.setAttribute('aria-label', img.title + ": " + img.desc);
+
+      const imageEl = document.createElement('img');
+      imageEl.src = img.src;
+      imageEl.alt = img.alt;
+
+      const descDiv = document.createElement('div');
+      descDiv.className = 'card-desc';
+      descDiv.innerText = img.title;
+
+      card.appendChild(imageEl);
+      card.appendChild(descDiv);
+
+      card.addEventListener('click', () => openModal(i));
+      card.addEventListener('keydown', (e) => {
+        if(e.key==='Enter' || e.key===' ') openModal(i);
+      });
+
+      galleryContainer.appendChild(card);
+    });
+
+    // Modal controls
+    const galleryModal = document.getElementById('galleryModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalCounter = document.getElementById('modalCounter');
+    let currentImgIdx = 0;
+
+    function openModal(idx) {
+      currentImgIdx = idx;
+      updateModal();
+      galleryModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('modalCloseBtn').focus();
+    }
+    function closeModal() {
+      galleryModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function updateModal() {
+      const img = galleryImages[currentImgIdx];
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modalTitle.innerText = img.title;
+      modalDesc.innerText = img.desc;
+      modalCounter.innerText = `Image ${currentImgIdx + 1} of ${galleryImages.length}`;
+    }
+    function showNext() {
+      currentImgIdx = (currentImgIdx + 1) % galleryImages.length;
+      updateModal();
+    }
+    function showPrev() {
+      currentImgIdx = (currentImgIdx - 1 + galleryImages.length) % galleryImages.length;
+      updateModal();
+    }
+    document.getElementById('modalNext').onclick = showNext;
+    document.getElementById('modalPrev').onclick = showPrev;
+    document.getElementById('modalCloseBtn').onclick = closeModal;
+    galleryModal.addEventListener('click', function(e) {
+      if (e.target === galleryModal) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (!galleryModal.classList.contains('active')) return;
+      if (e.key==='Escape') closeModal();
+      else if (e.key==='ArrowRight') showNext();
+      else if (e.key==='ArrowLeft') showPrev();
+    });
+    // Accessibility focus trap for modal
+    galleryModal.addEventListener('keydown', function(e) {
+      const focusables = galleryModal.querySelectorAll('[tabindex],button,.modal-close');
+      const first = focusables[0], last = focusables[focusables.length-1];
+      if(e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            last.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === last) {
+            first.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
