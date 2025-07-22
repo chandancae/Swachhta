@@ -216,7 +216,7 @@
     </div>
 
     <script>
-        // Use local Images folder images/TP1.jpeg ... TP10.jpeg
+        // Gallery image data
         const images = [
             {
                 src: "images/TP1.jpeg",
@@ -338,7 +338,7 @@
                 else if (e.key === 'ArrowRight') showNext();
             });
 
-            // Click outside image closes
+            // Click outside image closes modal
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) closeModal();
             });
