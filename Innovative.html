@@ -1,604 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Swachhta Innovations: Discover clean, green initiatives with innovative solutions, tree plantation drives, and community-driven sustainability programs.">
-    <meta name="keywords" content="Swachhta, Innovation, Tree Plantation, Environment, Sustainability, Clean Campus, Water Conservation, Community Cleanup">
-    <meta name="author" content="Swachhta Community">
-    <title>🌱 Swachhta Innovations | Green Future Through Innovation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-green: #2e7d32;
-            --secondary-green: #4caf50;
-            --accent-yellow: #fbbf24;
-            --bg-light: #eafaf1;
-            --bg-white: #ffffff;
-            --text-dark: #1a1a1a;
-            --text-light: #555;
-            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2e7d32 50%, #4caf50 100%);
-            --gradient-secondary: linear-gradient(45deg, #2e7d32 0%, #4caf50 100%);
-            --shadow-light: rgba(0, 0, 0, 0.1);
-            --shadow-medium: rgba(0, 0, 0, 0.15);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
-        .nav-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background: rgba(46, 125, 50, 0.95);
-            backdrop-filter: blur(15px);
-            padding: 1rem 2rem;
-            z-index: 1000;
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-        }
-        .nav-logo:hover { transform: scale(1.05); }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.15);
-            color: var(--accent-yellow);
-            transform: translateY(-2px);
-        }
-        .hero-section {
-            background: var(--gradient-primary);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.06)"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg);}
-        }
-        .hero-content {
-            max-width: 900px;
-            padding: 3rem;
-            backdrop-filter: blur(15px);
-            background: rgba(255,255,255,0.1);
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.2);
-            position: relative;
-            z-index: 2;
-            animation: slideInUp 1s ease-out;
-        }
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(50px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
-        .hero-title {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            font-weight: 700;
-        }
-        .hero-subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            color: #fff;
-            opacity: 0.95;
-        }
-        .hero-cta {
-            display: inline-block;
-            background: var(--accent-yellow);
-            color: var(--text-dark);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
-        }
-        .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
-            background: #f59e0b;
-        }
-        .stats-section {
-            background: var(--gradient-secondary);
-            padding: 4rem 2rem;
-            color: #fff;
-        }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        .stat-card {
-            background: rgba(255,255,255,0.15);
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-        }
-        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--accent-yellow);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .stat-label {
-            font-size: 1.3rem;
-            color: #fff;
-            opacity: 0.95;
-            font-weight: 500;
-        }
-        .initiatives-section {
-            background: var(--bg-light);
-            padding: 5rem 2rem;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            color: var(--primary-green);
-            margin-bottom: 3rem;
-            font-weight: 700;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px; left: 50%; transform: translateX(-50%);
-            width: 100px; height: 4px;
-            background: var(--accent-yellow);
-            border-radius: 2px;
-        }
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .initiative-card {
-            background: var(--bg-white);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 8px 25px var(--shadow-light);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .initiative-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 5px;
-            background: var(--gradient-secondary);
-        }
-        .initiative-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px var(--shadow-medium);}
-        .card-icon { font-size: 4rem; margin-bottom: 1.5rem; display: block;}
-        .card-title { font-size: 1.5rem; color: var(--primary-green); margin-bottom: 1rem; font-weight: 600;}
-        .card-description { color: var(--text-light); font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;}
-        .card-participants { color: var(--secondary-green); font-weight: 600; font-size: 0.95rem;}
-        .gallery-section { background: var(--bg-white); padding: 5rem 2rem;}
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .gallery-card {
-            background: var(--bg-white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px var(--shadow-light);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .gallery-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px var(--shadow-medium);}
-        .gallery-img {
-            width: 100%; height: 200px;
-            object-fit: cover;
-            background: linear-gradient(45deg, #e8f5e8, #c8e6c9);
-        }
-        .gallery-info { padding: 1.5rem;}
-        .gallery-emoji { font-size: 2rem; margin-bottom: 0.5rem;}
-        .gallery-title { font-size: 1.3rem; color: var(--primary-green); font-weight: 600; margin-bottom: 0.5rem;}
-        .gallery-desc { color: var(--text-light); font-size: 0.95rem; line-height: 1.5;}
-        .tree-section {
-            background: var(--gradient-primary);
-            padding: 5rem 2rem;
-            color: #fff;
-            text-align: center;
-        }
-        .tree-content { max-width: 800px; margin: 0 auto; }
-        .tree-icon { font-size: 5rem; margin-bottom: 2rem; display: block;}
-        .tree-slogan { font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--accent-yellow); text-shadow: 2px 2px 4px rgba(0,0,0,0.3);}
-        .tree-mission { font-size: 1.3rem; line-height: 1.6; margin-bottom: 3rem; opacity: 0.95;}
-        #galleryModal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
-            align-items: center; justify-content: center;
-        }
-        .modal-content {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90vw;
-            position: relative;
-        }
-        .modal-close {
-            position: absolute;
-            top: 1rem; right: 1rem;
-            background: var(--accent-yellow);
-            border: none;
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .modal-close:hover {
-            background: #f59e0b;
-            transform: scale(1.1);
-        }
-        .modal-img {
-            width: 100%;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-        }
-        .modal-title { font-size: 1.5rem; color: var(--primary-green); font-weight: 600; margin-bottom: 1rem;}
-        .modal-desc { color: var(--text-light); line-height: 1.6;}
-        .cta-section {
-            background: var(--accent-yellow);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        .cta-content h2 { font-size: 2.5rem; color: var(--text-dark); margin-bottom: 1rem; font-weight: 700;}
-        .cta-content p { font-size: 1.2rem; color: var(--text-dark); margin-bottom: 2rem; opacity: 0.8;}
-        .cta-buttons {
-            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-        }
-        .cta-button {
-            background: var(--primary-green);
-            color: #fff;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
-        }
-        .cta-button:hover {
-            background: var(--secondary-green);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
-        }
-        .cta-button.secondary {
-            background: transparent;
-            color: var(--text-dark);
-            border: 2px solid var(--primary-green);
-            box-shadow: none;
-        }
-        .cta-button.secondary:hover {
-            background: var(--primary-green);
-            color: #fff;
-        }
-        footer {
-            background: var(--text-dark);
-            color: #fff;
-            text-align: center;
-            padding: 3rem 2rem 2rem;
-        }
-        .footer-content { max-width: 1200px; margin: 0 auto;}
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        .footer-links a {
-            color: #fff;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--accent-yellow);
-        }
-        .footer-text { opacity: 0.7; font-size: 0.9rem;}
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.1rem; }
-            .section-title { font-size: 2.2rem; }
-            .stats-grid, .cards-grid, .gallery-grid { grid-template-columns: 1fr; }
-            .cta-buttons { flex-direction: column; align-items: center; }
-            .footer-links { flex-direction: column; gap: 1rem; }
-            .tree-slogan { font-size: 2rem; }
-            .tree-mission { font-size: 1.1rem; }
-        }
-        @media (max-width: 480px) {
-            .hero-content { padding: 2rem; }
-            .initiative-card, .stat-card { padding: 2rem 1.5rem; }
-            .nav-bar { padding: 1rem; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        .nav-links a:focus, .hero-cta:focus, .cta-button:focus, .gallery-card:focus {
-            outline: 3px solid var(--accent-yellow);
-            outline-offset: 2px;
-        }
-        .gallery-link { text-decoration: none; color: inherit; display: block; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Swachhta Innovations: Discover grassroots creative solutions, community-driven innovation, and impact for a sustainable, clean future.">
+  <meta name="keywords" content="Swachhta, Innovation, Implementation, Impact, Community, Environment, Sustainability">
+  <meta name="author" content="Swachhta Community">
+  <title>🌱 Swachhta Innovations | Innovation for Impact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+        --primary-green: #2e7d32;
+        --secondary-green: #4caf50;
+        --accent-yellow: #fbbf24;
+        --bg-light: #eafaf1;
+        --bg-white: #ffffff;
+        --text-dark: #1a1a1a;
+        --text-light: #555;
+        --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #2e7d32 50%, #4caf50 100%);
+        --gradient-secondary: linear-gradient(45deg, #2e7d32 0%, #4caf50 100%);
+        --shadow-light: rgba(0, 0, 0, 0.1);
+        --shadow-medium: rgba(0, 0, 0, 0.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        overflow-x: hidden;
+    }
+    .nav-bar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: rgba(46, 125, 50, 0.95);
+        backdrop-filter: blur(15px);
+        padding: 1rem 2rem;
+        z-index: 1000;
+    }
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .nav-logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+    }
+    .nav-logo:hover { transform: scale(1.05); }
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+    }
+    .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+    .nav-links a:hover {
+        background: rgba(255,255,255,0.15);
+        color: var(--accent-yellow);
+        transform: translateY(-2px);
+    }
+    .stats-section {
+        background: var(--gradient-secondary);
+        padding: 4rem 2rem;
+        color: #fff;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    .stat-card {
+        background: rgba(255,255,255,0.15);
+        padding: 2.5rem 2rem;
+        border-radius: 20px;
+        text-align: center;
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+        transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
+    .stat-number {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--accent-yellow);
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .stat-label {
+        font-size: 1.3rem;
+        color: #fff;
+        opacity: 0.95;
+        font-weight: 500;
+    }
+    .initiatives-section {
+        background: var(--bg-light);
+        padding: 5rem 2rem;
+    }
+    .section-title {
+        text-align: center;
+        font-size: 3rem;
+        color: var(--primary-green);
+        margin-bottom: 3rem;
+        font-weight: 700;
+        position: relative;
+    }
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px; left: 50%; transform: translateX(-50%);
+        width: 100px; height: 4px;
+        background: var(--accent-yellow);
+        border-radius: 2px;
+    }
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    .initiative-card {
+        background: var(--bg-white);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 25px var(--shadow-light);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .initiative-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 5px;
+        background: var(--gradient-secondary);
+    }
+    .initiative-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px var(--shadow-medium);}
+    .card-icon { font-size: 4rem; margin-bottom: 1.5rem; display: block;}
+    .card-title { font-size: 1.5rem; color: var(--primary-green); margin-bottom: 1rem; font-weight: 600;}
+    .card-description { color: var(--text-light); font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;}
+    .card-participants { color: var(--secondary-green); font-weight: 600; font-size: 0.95rem;}
+    .gallery-section { background: var(--bg-white); padding: 5rem 2rem;}
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    .gallery-card {
+        background: var(--bg-white);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px var(--shadow-light);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+    }
+    .gallery-card:hover {
+        transform: scale(1.04) rotate(-1.2deg);
+        box-shadow: 0 18px 40px var(--shadow-medium);
+    }
+    .gallery-img {
+        width: 100%; height: 200px;
+        object-fit: cover;
+        background: linear-gradient(45deg, #e8f5e8, #c8e6c9);
+        transition: filter 0.4s cubic-bezier(0.4,0.0,0.2,1), opacity 0.6s;
+        opacity: 0.92;
+    }
+    .gallery-card:hover .gallery-img { filter: brightness(1.07) saturate(1.25) blur(0.5px);}
+    .gallery-info { padding: 1.5rem;}
+    .gallery-emoji { font-size: 2rem; margin-bottom: 0.5rem;}
+    .gallery-title { font-size: 1.3rem; color: var(--primary-green); font-weight: 600; margin-bottom: 0.5rem;}
+    .gallery-desc { color: var(--text-light); font-size: 0.95rem; line-height: 1.5;}
+    #galleryModal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0; top: 0; width: 100vw; height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        align-items: center; justify-content: center;
+    }
+    .modal-content {
+        background: var(--bg-white);
+        padding: 2rem;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90vw;
+        position: relative;
+    }
+    .modal-close {
+        position: absolute;
+        top: 1rem; right: 1rem;
+        background: var(--accent-yellow);
+        border: none;
+        color: var(--text-dark);
+        font-size: 1.5rem;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .modal-close:hover {
+        background: #f59e0b;
+        transform: scale(1.1);
+    }
+    .modal-img {
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+    }
+    .modal-title { font-size: 1.5rem; color: var(--primary-green); font-weight: 600; margin-bottom: 1rem;}
+    .modal-desc { color: var(--text-light); line-height: 1.6;}
+    .cta-section {
+        background: var(--accent-yellow);
+        padding: 4rem 2rem;
+        text-align: center;
+    }
+    .cta-content h2 { font-size: 2.5rem; color: var(--text-dark); margin-bottom: 1rem; font-weight: 700;}
+    .cta-content p { font-size: 1.2rem; color: var(--text-dark); margin-bottom: 2rem; opacity: 0.8;}
+    .cta-buttons {
+        display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .cta-button {
+        background: var(--primary-green);
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+    }
+    .cta-button:hover {
+        background: var(--secondary-green);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+    }
+    .cta-button.secondary {
+        background: transparent;
+        color: var(--text-dark);
+        border: 2px solid var(--primary-green);
+        box-shadow: none;
+    }
+    .cta-button.secondary:hover {
+        background: var(--primary-green);
+        color: #fff;
+    }
+    footer {
+        background: var(--text-dark);
+        color: #fff;
+        text-align: center;
+        padding: 3rem 2rem 2rem;
+    }
+    .footer-content { max-width: 1200px; margin: 0 auto;}
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    .footer-links a {
+        color: #fff;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+    .footer-links a:hover {
+        opacity: 1;
+        color: var(--accent-yellow);
+    }
+    .footer-text { opacity: 0.7; font-size: 0.9rem;}
+    @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .section-title { font-size: 2.2rem; }
+        .stats-grid, .cards-grid, .gallery-grid { grid-template-columns: 1fr; }
+        .cta-buttons { flex-direction: column; align-items: center; }
+        .footer-links { flex-direction: column; gap: 1rem; }
+    }
+    @media (max-width: 480px) {
+        .initiative-card, .stat-card { padding: 2rem 1.5rem; }
+        .nav-bar { padding: 1rem; }
+    }
+  </style>
 </head>
 <body>
-    <nav class="nav-bar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">🌱 Swachhta Innovations</a>
-            <ul class="nav-links">
-                <li><a href="#impact">Impact</a></li>
-                <li><a href="#initiatives">Initiatives</a></li>
-                <li><a href="#innovations">Innovations</a></li>
-                <li><a href="#trees">Trees</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-            </ul>
-        </div>
-    </nav>
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">🌿 Green Future Through Innovation</h1>
-            <p class="hero-subtitle">
-                Transforming communities through creative solutions, sustainable practices, and youth-led environmental initiatives. Join our mission for a cleaner, greener tomorrow.
-            </p>
-            <a href="#initiatives" class="hero-cta">Explore Our Impact</a>
-        </div>
-    </section>
-    <section class="stats-section" id="impact">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label">Green Initiatives</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">575+</div>
-                    <div class="stat-label">Active Participants</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Success Rate</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Trees Planted</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="initiatives-section" id="initiatives">
-        <div class="container">
-            <h2 class="section-title">🌿 Core Initiatives</h2>
-            <div class="cards-grid">
-                <div class="initiative-card">
-                    <span class="card-icon">🌳</span>
-                    <h3 class="card-title">Tree Plantation</h3>
-                    <p class="card-description">Revive ecosystems and improve air quality through strategic plantations led by schools and community partnerships.</p>
-                    <p class="card-participants">Target: Schools & Communities</p>
-                </div>
-                <div class="initiative-card">
-                    <span class="card-icon">🏫</span>
-                    <h3 class="card-title">Clean Campus Drive</h3>
-                    <p class="card-description">Foster student leadership in maintaining clean, litter-free school environments through innovative programs.</p>
-                    <p class="card-participants">Focus: Educational Institutions</p>
-                </div>
-                <div class="initiative-card">
-                    <span class="card-icon">💧</span>
-                    <h3 class="card-title">Water Conservation</h3>
-                    <p class="card-description">Reduce water waste and promote rainwater harvesting on institutional campuses for sustainable future.</p>
-                    <p class="card-participants">Scope: Campus-wide Implementation</p>
-                </div>
-                <div class="initiative-card">
-                    <span class="card-icon">🏘️</span>
-                    <h3 class="card-title">Community Cleanups</h3>
-                    <p class="card-description">Collaborate with local workers to create cleaner neighborhoods and establish waste-free zones.</p>
-                    <p class="card-participants">Partnership: Local Communities</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="initiatives-section" id="innovations" style="background: var(--bg-white)">
-        <div class="container">
-            <h2 class="section-title">💡 Innovation Highlights</h2>
-            <div class="cards-grid">
-                <div class="initiative-card">
-                    <span class="card-icon">🤳</span>
-                    <h3 class="card-title">Selfie Point</h3>
-                    <p class="card-description">Interactive selfie points at key locations promote Swachhta awareness through social media engagement and viral campaigns.</p>
-                    <p class="card-participants">Location: GM Office</p>
-                </div>
-                <div class="initiative-card">
-                    <span class="card-icon">🚛</span>
-                    <h3 class="card-title">Swachhta Rath</h3>
-                    <p class="card-description">Mobile awareness campaign vehicle visiting various markets to spread cleanliness messages directly to communities.</p>
-                    <p class="card-participants">Coverage: Multiple Markets</p>
-                </div>
-                <div class="initiative-card">
-                    <span class="card-icon">🏆</span>
-                    <h3 class="card-title">Prize Distribution</h3>
-                    <p class="card-description">Recognizing and rewarding students for outstanding contributions to cleanliness initiatives in educational institutions.</p>
-                    <p class="card-participants">Target: School Students</p>
-                </div>
-                <div class="initiative-card">
-                    <span class="card-icon">🎖️</span>
-                    <h3 class="card-title">Karmachari Felicitation</h3>
-                    <p class="card-description">Honoring dedicated cleaning staff who work tirelessly to maintain cleanliness in our communities and workplaces.</p>
-                    <p class="card-participants">Honorees: Cleaning Staff</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="tree-section" id="trees">
-        <div class="container">
-            <div class="tree-content">
-                <span class="tree-icon">🌳</span>
-                <h2 class="tree-slogan">"Plant Today, Breathe Tomorrow"</h2>
-                <p class="tree-mission">
-                    Our tree plantation initiative brings together students, workers, and communities to create green corridors that combat climate change. Each sapling planted today becomes a guardian of our environment, providing cleaner air, biodiversity preservation, and sustainable ecosystems for future generations.
-                </p>
-                <a href="#gallery" class="hero-cta">See Our Impact</a>
-            </div>
-        </div>
-    </section>
-    <section class="gallery-section" id="gallery">
-        <div class="container">
-            <h2 class="section-title">📸 Impact Gallery</h2>
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery items will be inserted by JavaScript -->
-            </div>
-        </div>
-    </section>
-    <div id="galleryModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <img class="modal-img" id="modalImg" src="" alt="">
-            <h3 class="modal-title" id="modalTitle"></h3>
-            <p class="modal-desc" id="modalDesc"></p>
-        </div>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">🌱 Swachhta Innovations</a>
+      <ul class="nav-links">
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#innovative-ideas">Innovative Ideas</a></li>
+        <li><a href="#innovations">Innovations</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
     </div>
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>🌟 Join the Green Revolution</h2>
-                <p>Ready to make a difference? Every action counts in building a sustainable future. Join our community of environmental champions today!</p>
-                <div class="cta-buttons">
-                    <a href="#" class="cta-button">Get Involved</a>
-                    <a href="#" class="cta-button secondary">Share Your Ideas</a>
-                </div>
-            </div>
+  </nav>
+
+  <!-- Updated Stats Section -->
+  <section class="stats-section" id="impact">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Ideas Implemented</div>
         </div>
-    </section>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#impact">Our Impact</a>
-                <a href="#initiatives">Initiatives</a>
-                <a href="#innovations">Innovations</a>
-                <a href="#trees">Tree Plantation</a>
-                <a href="#gallery">Gallery</a>
-            </div>
-            <p class="footer-text">🌏 Inspired by people, powered by purpose | Swachhta Community © 2025</p>
+        <div class="stat-card">
+          <div class="stat-number">281</div>
+          <div class="stat-label">Participants</div>
         </div>
-    </footer>
-    <script>
-        const photos = [
-            { src: "images/Innovative1.jpg", link: "images/Innovative1-large.jpg", emoji: "🚛✨", title: "Swachhta Rath Rolls In!", galleryDesc: "Awareness Rath at Sawang Colliery inspires action.", alt: "Swachhta Rath at Sawang Colliery spreading awareness", description: "The vibrant Swachhta Awareness Rath drives through Sawang Colliery's Project Office, spreading waves of change and cleanliness awareness among workers and residents. This mobile campaign represents innovation in community outreach." },
-            { src: "images/Innovative2.jpg", link: "images/Innovative2-large.jpg", emoji: "📚🚍", title: "School Meets Swachhta", galleryDesc: "Students become eco-ambassadors at DAV, Sawang.", alt: "Swachhta Rath at DAV Public School, Sawang with students", description: "The Swachhta Rath arrives at DAV Public School, Sawang, turning students into eco-ambassadors through interactive awareness activities. Young minds are shaped to become future guardians of cleanliness." },
-            { src: "images/Innovative3.jpg", link: "images/Innovative3-large.jpg", emoji: "🏢🧼", title: "Mission Clean Jarangdih", galleryDesc: "Campus energized for mindful hygiene at Jarangdih.", alt: "Swachhta Rath at Jarangdih Colliery Project Office", description: "The Swachhta Rath energizes the campus near the Project Office, Jarangdih Colliery, engaging staff and locals in a movement of mindful hygiene. Workplace transformation begins with awareness." },
-            { src: "images/Innovative4.jpg", link: "images/Innovative4-large.jpg", emoji: "🏫🌿", title: "Awakening Young Minds", galleryDesc: "Environmental responsibility sparked in students.", alt: "Swachhta Awareness at Rajendra High School, Jarangdih", description: "Swachhta Awareness Rath halts at Rajendra High School, Jarangdih, igniting the spark of environmental responsibility in young hearts." },
-            { src: "images/Innovative5.jpg", link: "images/Innovative5-large.jpg", emoji: "🏭🚨", title: "Clean Start at the Pit!", galleryDesc: "Coal workers motivated with cleanliness messages.", alt: "Swachhta Rath at Kathara Colliery Pit Office", description: "The Swachhta Rath enters the Pit Office, Kathara Colliery, motivating coal workers with cleanliness slogans and visual messages." },
-            { src: "images/Innovative6.jpeg", link: "images/Innovative6-large.jpeg", emoji: "🙏🌟", title: "Heroes Behind the Brooms", galleryDesc: "Cleaning staff celebrated for shaping a cleaner future.", alt: "Swachhta Karmchari Samman at GM Office, Kathara", description: "A heartfelt Swachhta Karmchari Samman ceremony at GM Office, Kathara celebrates the invisible hands shaping a cleaner future." },
-            { src: "images/Innovative7.jpeg", link: "images/Innovative7-large.jpeg", emoji: "🧹🎖️", title: "Frontline Champions Felicitated", galleryDesc: "Sustainability warriors of Swachhta mission honored.", alt: "Cleaning staff honored at GM Office, Kathara", description: "Cleaning staff are honored at the GM Office, Kathara, recognized as true sustainability warriors of the Swachhta mission." },
-            { src: "images/Innovative8.jpeg", link: "images/Innovative8-large.jpeg", emoji: "🌟👷", title: "Unsung Heroes of Hygiene", galleryDesc: "Dedication of sanitation staff saluted at GM Office.", alt: "Sanitation staff at GM Office, Kathara", description: "Swachhta Karmachari Samman event salutes the relentless dedication of sanitation staff at the GM Office, Kathara." },
-            { src: "images/Innovative9.jpeg", link: "images/Innovative9-large.jpeg", emoji: "🏆🎨", title: "Clean Champions Awarded!", galleryDesc: "Students inspired to be young Swachhta leaders.", alt: "Prizes at DAV Public School, Kathara", description: "The General Manager, Kathara Area, presents prizes at DAV Public School, Kathara, inspiring students to be young Swachhta leaders." },
-            { src: "images/Innovative10.jpeg", link: "images/Innovative10-large.jpeg", emoji: "🎓🌍", title: "Students Lead the Clean Way", galleryDesc: "Innovative student contributions recognized.", alt: "Students rewarded at DAV Public School, Kathara", description: "Rewarding school students at DAV Public School for their innovative contributions to cleanliness campaigns and awareness." },
-            { src: "images/Innovative11.jpeg", link: "images/Innovative11-large.jpeg", emoji: "🎖️✨", title: "Future of Clean India", galleryDesc: "Creative ideas and actions celebrated by GM.", alt: "Young achievers at DAV Public School, Kathara", description: "Young achievers at DAV Public School receive accolades from GM, Kathara, for their creative ideas and community-driven Swachhta actions." }
-        ];
-        function renderGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            if (!galleryGrid) return;
-            photos.forEach((photo, idx) => {
-                const card = document.createElement('div');
-                card.className = 'gallery-card';
-                card.tabIndex = 0;
-                card.setAttribute('role', 'button');
-                card.setAttribute('aria-label', `${photo.title} - Open gallery item`);
-                card.onclick = () => openModal(idx);
-                card.onkeypress = e => { if (e.key === 'Enter' || e.key === ' ') openModal(idx); };
-                card.innerHTML = `
-                    <a href="${photo.link}" target="_blank" rel="noopener" class="gallery-link">
-                        <img class="gallery-img" src="${photo.src}" alt="${photo.alt || photo.title}" loading="lazy" />
-                        <div class="gallery-info">
-                            <span class="gallery-emoji">${photo.emoji}</span>
-                            <h3 class="gallery-title">${photo.title}</h3>
-                            <p class="gallery-desc">${photo.galleryDesc || photo.description}</p>
-                        </div>
-                    </a>
-                `;
-                galleryGrid.appendChild(card);
-            });
-        }
-        function openModal(index) {
-            const modal = document.getElementById('galleryModal');
-            const modalImg = document.getElementById('modalImg');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDesc = document.getElementById('modalDesc');
-            if (!photos[index]) return;
-            modal.style.display = 'flex';
-            modalImg.src = photos[index].src;
-            modalImg.alt = photos[index].alt || photos[index].title;
-            modalTitle.textContent = photos[index].title;
-            modalDesc.textContent = photos[index].description;
-        }
-        function closeModal() {
-            const modal = document.getElementById('galleryModal');
-            modal.style.display = 'none';
-        }
-        window.addEventListener('click', (e) => {
-            const modal = document.getElementById('galleryModal');
-            if (e.target === modal) { closeModal(); }
-        });
-        window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-        window.addEventListener('DOMContentLoaded', renderGallery);
-    </script>
+        <div class="stat-card">
+          <div class="stat-number">49%</div>
+          <div class="stat-label">Success Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Innovative Ideas & Implementation Section -->
+  <section class="initiatives-section" id="innovative-ideas" style="background: var(--bg-light)">
+    <div class="container">
+      <h2 class="section-title">💡 Innovative Ideas & Implementation</h2>
+      <div style="max-width:800px; margin:2rem auto; font-size:1.2rem; color:var(--text-light); text-align:center; background:var(--bg-white); border-radius:20px; box-shadow:0 8px 25px var(--shadow-light); padding:2.5rem 2rem;">
+        <p style="font-weight:600; color:var(--primary-green); font-size:1.25rem; margin-bottom:1rem;">
+          "Innovation for Impact" – Small ideas, big change!
+        </p>
+        <p>
+          Celebrating creative solutions and grassroots innovations for Swachhta transformation. Got an innovative idea for Swachhta? Let’s brainstorm and implement it together! Every creative solution makes a difference.
+        </p>
+        <ul style="text-align:left; margin:1.5rem auto 0; max-width:600px;">
+          <li>Encouraging all community members and students to contribute simple yet effective cleanliness ideas.</li>
+          <li>Prototyping quick, low-cost solutions: mobile awareness raths, selfie points, interactive drives, and staff recognition ceremonies.</li>
+          <li>Ensuring everyone, from workers to students, has a voice and role in implementation and impact measurement.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Innovation Impact Section -->
+  <section class="initiatives-section" id="innovation-impact" style="background: var(--bg-white)">
+    <div class="container">
+      <h2 class="section-title">🚀 Innovation Impact</h2>
+      <div style="max-width:800px; margin:2rem auto; font-size:1.1rem; color:var(--text-light); background:var(--bg-light); border-radius:20px; box-shadow:0 6px 20px var(--shadow-light); padding:2.5rem 2rem; text-align:center;">
+        <ul style="text-align:left; max-width:600px; margin:0 auto;">
+          <li>Hundreds of participants—including students, staff, and community members—actively brainstorm and execute new ideas for a cleaner environment.</li>
+          <li>Grassroots innovations have inspired measurable transformation: better waste management, cleaner campuses, and sustained volunteer engagement.</li>
+          <li>Recognition events and visible campaigns have turned local heroes and young leaders into Swachhta ambassadors, creating a ripple effect across schools, offices, and public sites.</li>
+          <li>All innovation pilots emphasize “co-creation”—empowering every contributor and celebrating small wins that lead to larger change.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Innovation Highlights (retain as is) -->
+  <section class="initiatives-section" id="innovations" style="background: var(--bg-white)">
+    <div class="container">
+      <h2 class="section-title">💡 Innovation Highlights</h2>
+      <div class="cards-grid">
+        <div class="initiative-card">
+          <span class="card-icon">🤳</span>
+          <h3 class="card-title">Selfie Point</h3>
+          <p class="card-description">Interactive selfie points at key locations promote Swachhta awareness through social media engagement and viral campaigns.</p>
+          <p class="card-participants">Location: GM Office</p>
+        </div>
+        <div class="initiative-card">
+          <span class="card-icon">🚛</span>
+          <h3 class="card-title">Swachhta Rath</h3>
+          <p class="card-description">Mobile awareness campaign vehicle visiting various markets to spread cleanliness messages directly to communities.</p>
+          <p class="card-participants">Coverage: Multiple Markets</p>
+        </div>
+        <div class="initiative-card">
+          <span class="card-icon">🏆</span>
+          <h3 class="card-title">Prize Distribution</h3>
+          <p class="card-description">Recognizing and rewarding students for outstanding contributions to cleanliness initiatives in educational institutions.</p>
+          <p class="card-participants">Target: School Students</p>
+        </div>
+        <div class="initiative-card">
+          <span class="card-icon">🎖️</span>
+          <h3 class="card-title">Karmachari Felicitation</h3>
+          <p class="card-description">Honoring dedicated cleaning staff who work tirelessly to maintain cleanliness in our communities and workplaces.</p>
+          <p class="card-participants">Honorees: Cleaning Staff</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Gallery Section (with required images and info) -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <h2 class="section-title">📸 Impact Gallery</h2>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Gallery items will be inserted by JavaScript -->
+      </div>
+    </div>
+  </section>
+  <div id="galleryModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <img class="modal-img" id="modalImg" src="" alt="">
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>🌟 Join the Green Revolution</h2>
+        <p>Ready to make a difference? Every action counts in building a sustainable future. Join our community of environmental champions today!</p>
+        <div class="cta-buttons">
+          <a href="#" class="cta-button">Get Involved</a>
+          <a href="#" class="cta-button secondary">Share Your Ideas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#impact">Our Impact</a>
+        <a href="#innovative-ideas">Innovative Ideas</a>
+        <a href="#innovations">Innovations</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+      <p class="footer-text">🌏 Inspired by people, powered by purpose | Swachhta Community © 2025</p>
+    </div>
+  </footer>
+  <script>
+    const photos = [
+      { src: "images/Innovative1.jpg", emoji: "🚛✨", title: "Swachhta Rath Rolls In!", galleryDesc: "Awareness Rath at Sawang Colliery inspires action.", alt: "Swachhta Rath at Sawang Colliery spreading awareness", description: "The vibrant Swachhta Awareness Rath drives through Sawang Colliery's Project Office, spreading waves of change and cleanliness awareness among workers and residents. This mobile campaign represents innovation in community outreach." },
+      { src: "images/Innovative2.jpg", emoji: "📚🚍", title: "School Meets Swachhta", galleryDesc: "Students become eco-ambassadors at DAV, Sawang.", alt: "Swachhta Rath at DAV Public School, Sawang with students", description: "The Swachhta Rath arrives at DAV Public School, Sawang, turning students into eco-ambassadors through interactive awareness activities. Young minds are shaped to become future guardians of cleanliness." },
+      { src: "images/Innovative3.jpg", emoji: "🏢🧼", title: "Mission Clean Jarangdih", galleryDesc: "Campus energized for mindful hygiene at Jarangdih.", alt: "Swachhta Rath at Jarangdih Colliery Project Office", description: "The Swachhta Rath energizes the campus near the Project Office, Jarangdih Colliery, engaging staff and locals in a movement of mindful hygiene. Workplace transformation begins with awareness." },
+      { src: "images/Innovative4.jpg", emoji: "🏫🌿", title: "Awakening Young Minds", galleryDesc: "Environmental responsibility sparked in students.", alt: "Swachhta Awareness at Rajendra High School, Jarangdih", description: "Swachhta Awareness Rath halts at Rajendra High School, Jarangdih, igniting the spark of environmental responsibility in young hearts." },
+      { src: "images/Innovative5.jpg", emoji: "🏭🚨", title: "Clean Start at the Pit!", galleryDesc: "Coal workers motivated with cleanliness messages.", alt: "Swachhta Rath at Kathara Colliery Pit Office", description: "The Swachhta Rath enters the Pit Office, Kathara Colliery, motivating coal workers with cleanliness slogans and visual messages." },
+      { src: "images/Innovative6.jpeg", emoji: "🙏🌟", title: "Heroes Behind the Brooms", galleryDesc: "Cleaning staff celebrated for shaping a cleaner future.", alt: "Swachhta Karmchari Samman at GM Office, Kathara", description: "A heartfelt Swachhta Karmchari Samman ceremony at GM Office, Kathara celebrates the invisible hands shaping a cleaner future." },
+      { src: "images/Innovative7.jpeg", emoji: "🧹🎖️", title: "Frontline Champions Felicitated", galleryDesc: "Sustainability warriors of Swachhta mission honored.", alt: "Cleaning staff honored at GM Office, Kathara", description: "Cleaning staff are honored at the GM Office, Kathara, recognized as true sustainability warriors of the Swachhta mission." },
+      { src: "images/Innovative8.jpeg", emoji: "🌟👷", title: "Unsung Heroes of Hygiene", galleryDesc: "Dedication of sanitation staff saluted at GM Office.", alt: "Sanitation staff at GM Office, Kathara", description: "Swachhta Karmachari Samman event salutes the relentless dedication of sanitation staff at the GM Office, Kathara." },
+      { src: "images/Innovative9.jpeg", emoji: "🏆🎨", title: "Clean Champions Awarded!", galleryDesc: "Students inspired to be young Swachhta leaders.", alt: "Prizes at DAV Public School, Kathara", description: "The General Manager, Kathara Area, presents prizes at DAV Public School, Kathara, inspiring students to be young Swachhta leaders." },
+      { src: "images/Innovative10.jpeg", emoji: "🎓🌍", title: "Students Lead the Clean Way", galleryDesc: "Innovative student contributions recognized.", alt: "Students rewarded at DAV Public School, Kathara", description: "Rewarding school students at DAV Public School for their innovative contributions to cleanliness campaigns and awareness." },
+      { src: "images/Innovative11.jpeg", emoji: "🎖️✨", title: "Future of Clean India", galleryDesc: "Creative ideas and actions celebrated by GM.", alt: "Young achievers at DAV Public School, Kathara", description: "Young achievers at DAV Public School receive accolades from GM, Kathara, for their creative ideas and community-driven Swachhta actions." }
+    ];
+    function renderGallery() {
+      const galleryGrid = document.getElementById('galleryGrid');
+      if (!galleryGrid) return;
+      photos.forEach((photo, idx) => {
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+        card.tabIndex = 0;
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `${photo.title} - Open gallery item`);
+        card.onclick = () => openModal(idx);
+        card.onkeypress = e => { if (e.key === 'Enter' || e.key === ' ') openModal(idx); };
+        card.innerHTML = `
+          <a href="${photo.src}" target="_blank" rel="noopener" class="gallery-link">
+            <img class="gallery-img" src="${photo.src}" alt="${photo.alt || photo.title}" loading="lazy" />
+            <div class="gallery-info">
+              <span class="gallery-emoji">${photo.emoji}</span>
+              <h3 class="gallery-title">${photo.title}</h3>
+              <p class="gallery-desc">${photo.galleryDesc || photo.description}</p>
+            </div>
+          </a>
+        `;
+        galleryGrid.appendChild(card);
+      });
+    }
+    function openModal(index) {
+      const modal = document.getElementById('galleryModal');
+      const modalImg = document.getElementById('modalImg');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDesc = document.getElementById('modalDesc');
+      if (!photos[index]) return;
+      modal.style.display = 'flex';
+      modalImg.src = photos[index].src;
+      modalImg.alt = photos[index].alt || photos[index].title;
+      modalTitle.textContent = photos[index].title;
+      modalDesc.textContent = photos[index].description;
+    }
+    function closeModal() {
+      const modal = document.getElementById('galleryModal');
+      modal.style.display = 'none';
+    }
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('galleryModal');
+      if (e.target === modal) { closeModal(); }
+    });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    window.addEventListener('DOMContentLoaded', renderGallery);
+  </script>
 </body>
 </html>
