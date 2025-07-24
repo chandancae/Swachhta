@@ -1,846 +1,1079 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌳 Tree Plantation - Swachhta Campaign</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            /* Existing color variables */
-            --green-dark: #2d5a27;
-            --green-medium: #4a7c59;
-            --green-light: #6a994e;
-            --text-light: #fff;
-            --accent-green: #a7f3d0;
-            --accent-yellow: #ffd700;
-            --shadow-dark: rgba(0,0,0,0.3);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🌳 Tree Plantation - Swachhta Campaign</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      /* Existing color variables */
+      --green-dark: #2d5a27;
+      --green-medium: #4a7c59;
+      --green-light: #6a994e;
+      --text-light: #fff;
+      --accent-green: #a7f3d0;
+      --accent-yellow: #ffd700;
+      --shadow-dark: rgba(0, 0, 0, 0.3);
 
-            /* New variables for gallery from previous improvisation */
-            --primary-bg-modal: linear-gradient(135deg, #0a2540 0%, #12294d 80%); /* Used for modal bg consistency */
-            --accent-gallery: #ffba08; /* Slightly different from main theme, but can be adapted */
-            --accent-hover-gallery: #ffd166;
-            --glass-gallery: rgba(18, 41, 77, 0.55);
-            --glass-dark-gallery: rgba(10, 37, 64, 0.75);
-            --stat-bg-gallery: rgba(20, 30, 51, 0.77);
-            --feature-bg-gallery: rgba(0,0,0,0.14);
-            --text-accent-light-gallery: #f6e6b8;
-            --text-accent-dark-gallery: #eeddb0;
-            --shadow-light-gallery: rgba(255,229,91,0.07);
-            --shadow-medium-gallery: rgba(255,226,117,0.14);
-            --shadow-dark-gallery: rgba(255,229,91,0.45);
-        }
+      /* New variables for gallery */
+      --primary-bg-modal: linear-gradient(135deg, #0a2540 0%, #12294d 80%);
+      --accent-gallery: #ffba08;
+      --accent-hover-gallery: #ffd166;
+      --glass-gallery: rgba(18, 41, 77, 0.55);
+      --glass-dark-gallery: rgba(10, 37, 64, 0.75);
+      --stat-bg-gallery: rgba(20, 30, 51, 0.77);
+      --feature-bg-gallery: rgba(0, 0, 0, 0.14);
+      --text-accent-light-gallery: #f6e6b8;
+      --text-accent-dark-gallery: #eeddb0;
+      --shadow-light-gallery: rgba(255, 229, 91, 0.07);
+      --shadow-medium-gallery: rgba(255, 226, 117, 0.14);
+      --shadow-dark-gallery: rgba(255, 229, 91, 0.45);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Roboto', sans-serif; /* Changed from Arial to Roboto for consistency with previous improvisation */
-            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-medium) 50%, var(--green-light) 100%);
-            min-height: 100vh;
-            color: var(--text-light);
-            overflow-x: hidden;
-            line-height: 1.6; /* Added for better readability */
-        }
+    body {
+      font-family: "Roboto", sans-serif;
+      background: linear-gradient(
+        135deg,
+        var(--green-dark) 0%,
+        var(--green-medium) 50%,
+        var(--green-light) 100%
+      );
+      min-height: 100vh;
+      color: var(--text-light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
 
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><path fill="%23228B22" d="M0,400 C300,300 600,500 900,400 C1000,350 1100,450 1200,400 V800 H0 Z"/></svg>');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
+    .hero-section {
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0.3)
+        ),
+        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><path fill='%23228B22' d='M0,400 C300,300 600,500 900,400 C1000,350 1100,450 1200,400 V800 H0 Z'/></svg>");
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
 
-        .hero-content {
-            max-width: 800px;
-            padding: 1rem;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: fadeInUp 1s ease-out;
-        }
+    .hero-content {
+      max-width: 800px;
+      padding: 1rem; /* Reduced from 2rem to decrease green space */
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeInUp 1s ease-out;
+    }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px var(--shadow-dark);
-            animation: pulse 2s infinite;
-        }
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px var(--shadow-dark);
+      animation: pulse 2s infinite;
+    }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
 
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
 
-        .nav-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(45, 90, 39, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(45, 90, 39, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .nav-logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    .nav-logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-        .nav-logo:hover {
-            color: var(--accent-green);
-        }
+    .nav-logo:hover {
+      color: var(--accent-green);
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-        }
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+    }
 
-        .nav-links a:hover, .nav-links a:focus-visible { /* Added focus-visible */
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--accent-green);
-            outline: none; /* Remove default outline for custom focus */
-            box-shadow: 0 0 0 2px var(--accent-green); /* Custom focus indicator */
-        }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--accent-green);
+      outline: none;
+      box-shadow: 0 0 0 2px var(--accent-green);
+    }
 
-        .impact-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(45deg, #1e3a2e 0%, var(--green-dark) 100%);
-        }
+    .impact-section {
+      padding: 4rem 2rem;
+      background: linear-gradient(45deg, #1e3a2e 0%, var(--green-dark) 100%);
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--accent-green);
-            text-shadow: 1px 1px 2px var(--shadow-dark);
-        }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--accent-green);
+      text-shadow: 1px 1px 2px var(--shadow-dark);
+    }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
 
-        .stat-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
+    .stat-card {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+      );
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
 
-        .stat-card:hover, .stat-card:focus-visible { /* Added focus-visible */
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px var(--shadow-dark);
-            outline: none; /* Remove default outline for custom focus */
-            box-shadow: 0 0 0 3px var(--accent-green), 0 20px 40px var(--shadow-dark); /* Custom focus indicator */
-        }
+    .stat-card:hover,
+    .stat-card:focus-visible {
+      transform: translateY(-10px);
+      box-shadow: 0 0 0 3px var(--accent-green), 0 20px 40px var(--shadow-dark);
+      outline: none;
+    }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-            text-shadow: 1px 1px 2px var(--shadow-dark);
-        }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--accent-green);
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 2px var(--shadow-dark);
+    }
 
-        .stat-label {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            opacity: 0.9;
-        }
+    .stat-label {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      opacity: 0.9;
+    }
 
-        .locations-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(45deg, var(--green-dark) 0%, var(--green-medium) 100%);
-        }
+    .locations-section {
+      padding: 4rem 2rem;
+      background: linear-gradient(45deg, var(--green-dark) 0%, var(--green-medium) 100%);
+    }
 
-        .locations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
 
-        .location-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.1));
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
+    .location-card {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.1)
+      );
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
 
-        .location-card:hover, .location-card:focus-visible { /* Added focus-visible */
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            outline: none; /* Remove default outline for custom focus */
-            box-shadow: 0 0 0 3px var(--accent-green), 0 15px 30px rgba(0,0,0,0.2); /* Custom focus indicator */
-        }
+    .location-card:hover,
+    .location-card:focus-visible {
+      transform: translateY(-5px);
+      box-shadow: 0 0 0 3px var(--accent-green), 0 15px 30px rgba(0, 0, 0, 0.2);
+      outline: none;
+    }
 
-        .location-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--accent-green);
-            margin-bottom: 0.5rem;
-        }
+    .location-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--accent-green);
+      margin-bottom: 0.5rem;
+    }
 
-        .location-participants {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            opacity: 0.9;
-        }
+    .location-participants {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      opacity: 0.9;
+    }
 
-        .participants-number {
-            font-weight: bold;
-            color: var(--accent-yellow);
-            font-size: 1.2rem;
-        }
+    .participants-number {
+      font-weight: bold;
+      color: var(--accent-yellow);
+      font-size: 1.2rem;
+    }
 
-        /* --- Gallery Section (Integrated) --- */
-        .gallery-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(45deg, var(--green-medium) 0%, var(--green-light) 100%);
-        }
-        .gallery-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 26px; /* Adjusted from 19px for better spacing */
-            justify-content: center;
-            align-items: stretch;
-            margin-top: 2rem;
-        }
-        .gallery-card {
-            background: rgba(30,41,67,0.34); /* Keep original glass effect for card */
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 10px 32px 0 rgba(86,99,156,0.10);
-            overflow: hidden;
-            min-width: 210px;
-            width: 230px;
-            margin-bottom: 24px;
-            border: 2px solid rgba(255,186,8,0.08); /* Keep original border for card */
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.17s, box-shadow 0.22s, border-color 0.18s;
-            outline: none;
-        }
-        .gallery-card:hover, .gallery-card:focus-visible {
-            box-shadow: 0 8px 48px 0 rgba(255,186,8,0.14);
-            transform: scale(1.04);
-            border-color: var(--accent-hover-gallery); /* Use gallery accent for consistency */
-            z-index: 5;
-            outline: 3px solid var(--accent-hover-gallery); /* Custom focus outline */
-        }
-        .gallery-card img {
-            width: 100%; height: 170px; object-fit: cover;
-            border-top-left-radius: 13px; border-top-right-radius: 13px;
-            transition: filter 0.25s, opacity 0.23s;
-        }
-        .gallery-card:hover img { opacity: 0.78; filter: blur(1px);}
-        .gallery-card .card-desc {
-            padding: 14px 12px 10px 12px;
-            color: var(--text-accent-dark-gallery); /* Using gallery specific text color */
-            text-align: center; background: rgba(21,29,49,0.80);
-        }
+    /* --- Gallery Section (Integrated) --- */
+    .gallery-section {
+      padding: 4rem 2rem;
+      background: linear-gradient(45deg, var(--green-medium) 0%, var(--green-light) 100%);
+    }
+    .gallery-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 26px;
+      justify-content: center;
+      align-items: stretch;
+      margin-top: 2rem;
+    }
+    .gallery-card {
+      background: rgba(30, 41, 67, 0.34);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 10px 32px 0 rgba(86, 99, 156, 0.1);
+      overflow: hidden;
+      min-width: 210px;
+      width: 230px;
+      margin-bottom: 24px;
+      border: 2px solid rgba(255, 186, 8, 0.08);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.17s, box-shadow 0.22s, border-color 0.18s;
+      outline: none;
+    }
+    .gallery-card:hover,
+    .gallery-card:focus-visible {
+      box-shadow: 0 8px 48px 0 rgba(255, 186, 8, 0.14);
+      transform: scale(1.04);
+      border-color: var(--accent-hover-gallery);
+      z-index: 5;
+      outline: 3px solid var(--accent-hover-gallery);
+    }
+    .gallery-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-top-left-radius: 13px;
+      border-top-right-radius: 13px;
+      transition: filter 0.25s, opacity 0.23s;
+    }
+    .gallery-card:hover img {
+      opacity: 0.78;
+      filter: blur(1px);
+    }
+    .gallery-card .card-desc {
+      padding: 14px 12px 10px 12px;
+      color: var(--text-accent-dark-gallery);
+      text-align: center;
+      background: rgba(21, 29, 49, 0.8);
+    }
 
-        /* --- Gallery Modal (Integrated) --- */
-        .gallery-modal {
-            display: none; position: fixed; z-index: 1002; left: 0; top: 0; width: 100vw; height: 100vh;
-            background: rgba(21,32,50,0.80); backdrop-filter: blur(6px); justify-content: center;
-            align-items: center; animation: fadeInUp 0.5s;
-        }
-        .gallery-modal.active { display: flex;}
-        .modal-content {
-            position: relative; background: rgba(255,255,255,0.05); border-radius: 23px; overflow: hidden;
-            box-shadow: 0 13px 54px 0 rgba(53,52,36,0.31); max-width: 670px; width: 91vw;
-            padding: 0; display: flex; flex-direction: column; align-items: center; animation: modalZoom 0.27s;
-            max-height: 90vh; /* Ensure modal content is scrollable if it exceeds viewport height */
-            overflow-y: auto;
-        }
-        @keyframes modalZoom { from {transform: scale(0.96);} to {transform: scale(1);}}
-        .modal-img {
-            display: block; width: 100%; max-height: 400px; object-fit: cover;
-            border-top-left-radius: 20px; border-top-right-radius: 20px;
-        }
-        .modal-info {
-            padding: 18px 26px; background: rgba(14, 18, 27, 0.8); width: 100%;
-            box-sizing: border-box; text-align: center;
-        }
-        .modal-title {
-            font-family: 'Montserrat',sans-serif; font-size: 1.3rem; font-weight: 800;
-            color: var(--accent-gallery); /* Use gallery accent for consistency */
-            margin-bottom: 10px;letter-spacing:0.01em;
-        }
-        .modal-desc { color: var(--text-accent-dark-gallery); font-size: 1.05rem; margin-bottom: 7px;}
-        .modal-close {
-            position: absolute; top: 18px; right: 16px; background: rgba(255,255,200,0.27);
-            color: var(--accent-gallery); /* Use gallery accent for consistency */
-            font-size: 2.0rem; cursor: pointer; border: none; border-radius: 50%;
-            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-            transition: background 0.2s; z-index: 1020;
-            outline: none; /* Removed default outline for custom focus */
-        }
-        .modal-close:hover, .modal-close:focus-visible {
-            background: var(--accent-hover-gallery);
-            color: #072832; outline: 3px solid var(--accent-hover-gallery);
-        }
-        .modal-arrows {
-            display: flex; justify-content: space-between; align-items: center; margin-top: 7px;
-            width: 97%; margin: 0 auto;
-        }
-        .modal-arrow {
-            background: none; border: none; font-size: 2.25rem; color: var(--accent-gallery); /* Use gallery accent for consistency */
-            cursor: pointer; margin: 0 5px; border-radius: 50%;
-            width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;
-            transition: background 0.2s; opacity: 0.72;
-            outline: none; /* Removed default outline for custom focus */
-        }
-        .modal-arrow:focus-visible, .modal-arrow:hover {
-            background: rgba(255,225,91,0.21); color: #12294d; outline: 3px solid var(--accent-hover-gallery); opacity: 1;
-        }
-        .modal-counter { font-size: 1.05rem; color: #f3ead1; font-weight: 700; margin: 0 10px;}
+    /* --- Gallery Modal (Integrated) --- */
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      z-index: 1002;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(21, 32, 50, 0.8);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      animation: fadeInUp 0.5s;
+    }
+    .gallery-modal.active {
+      display: flex;
+    }
+    .modal-content {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 23px;
+      overflow: hidden;
+      box-shadow: 0 13px 54px 0 rgba(53, 52, 36, 0.31);
+      max-width: 90vw; /* Increased from 670px */
+      width: 91vw;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: modalZoom 0.27s;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    @keyframes modalZoom {
+      from {
+        transform: scale(0.96);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+    .modal-img {
+      display: block;
+      width: auto; /* Changed from 100% to natural width */
+      max-height: 80vh; /* Increased max height */
+      object-fit: cover;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    .modal-info {
+      padding: 18px 26px;
+      background: rgba(14, 18, 27, 0.8);
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .modal-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-gallery);
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+    .modal-desc {
+      color: var(--text-accent-dark-gallery);
+      font-size: 1.05rem;
+      margin-bottom: 7px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 16px;
+      background: rgba(255, 255, 200, 0.27);
+      color: var(--accent-gallery);
+      font-size: 2rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 1020;
+      outline: none;
+    }
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      background: var(--accent-hover-gallery);
+      color: #072832;
+      outline: 3px solid var(--accent-hover-gallery);
+    }
+    .modal-arrows {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 7px;
+      width: 97%;
+      margin: 0 auto;
+    }
+    .modal-arrow {
+      background: none;
+      border: none;
+      font-size: 2.25rem;
+      color: var(--accent-gallery);
+      cursor: pointer;
+      margin: 0 5px;
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      opacity: 0.72;
+      outline: none;
+    }
+    .modal-arrow:focus-visible,
+    .modal-arrow:hover {
+      background: rgba(255, 225, 91, 0.21);
+      color: #12294d;
+      outline: 3px solid var(--accent-hover-gallery);
+      opacity: 1;
+    }
+    .modal-counter {
+      font-size: 1.05rem;
+      color: #f3ead1;
+      font-weight: 700;
+      margin: 0 10px;
+    }
 
-        .cta-section {
-            padding: 4rem 2rem;
-            background: linear-gradient(45deg, #1e3a2e 0%, var(--green-dark) 100%);
-            text-align: center;
-        }
+    .cta-section {
+      padding: 4rem 2rem;
+      background: linear-gradient(45deg, #1e3a2e 0%, var(--green-dark) 100%);
+      text-align: center;
+    }
 
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--accent-green), #6ee7b7);
-            color: #1e3a2e;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px var(--shadow-dark);
-            outline: none; /* Remove default outline for custom focus */
-        }
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(45deg, var(--accent-green), #6ee7b7);
+      color: #1e3a2e;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px var(--shadow-dark);
+      outline: none;
+    }
 
-        .cta-button:hover, .cta-button:focus-visible { /* Added focus-visible */
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            background: linear-gradient(45deg, #6ee7b7, var(--accent-green));
-            outline: 3px solid var(--accent-green); /* Custom focus indicator */
-        }
+    .cta-button:hover,
+    .cta-button:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(45deg, #6ee7b7, var(--accent-green));
+      outline: 3px solid var(--accent-green);
+    }
 
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-        .floating-leaf {
-            position: absolute;
-            font-size: 2rem;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.1;
-        }
+    .floating-leaf {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.1;
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+      }
+    }
 
-        .floating-leaf:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .floating-leaf:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
-        .floating-leaf:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 2s; }
-        .floating-leaf:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 3s; }
+    .floating-leaf:nth-child(1) {
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    .floating-leaf:nth-child(2) {
+      top: 20%;
+      right: 10%;
+      animation-delay: 1s;
+    }
+    .floating-leaf:nth-child(3) {
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 2s;
+    }
+    .floating-leaf:nth-child(4) {
+      bottom: 10%;
+      right: 20%;
+      animation-delay: 3s;
+    }
 
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
 
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
 
-            .nav-links {
-                gap: 1rem;
-            }
+      .nav-links {
+        gap: 1rem;
+      }
 
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
+      .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
 
-            .locations-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-card { /* Adjust gallery card for smaller screens */
-                min-width: 162px;
-                width: 90vw;
-                max-width: 220px;
-            }
-            .modal-content { /* Adjust modal for smaller screens */
-                max-width: 96vw;
-                max-height: 95vh;
-            }
-            .modal-img { /* Adjust modal image for smaller screens */
-                max-height: 250px;
-            }
-        }
+      .locations-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-card {
+        min-width: 162px;
+        width: 90vw;
+        max-width: 220px;
+      }
+      .modal-content {
+        max-width: 96vw;
+        max-height: 95vh;
+      }
+      .modal-img {
+        max-height: 90vh; /* larger on smaller screens */
+      }
+    }
 
-        @media (max-width: 480px) { /* Even smaller screens */
-            .nav-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-            .hero-title {
-                font-size: 2rem;
-            }
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-        }
-        /* General focus-visible styles */
-        :focus-visible {
-            outline: 3px solid var(--accent-green);
-            outline-offset: 2px;
-        }
-    </style>
+    @media (max-width: 480px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
+    /* General focus-visible styles */
+    :focus-visible {
+      outline: 3px solid var(--accent-green);
+      outline-offset: 2px;
+    }
+  </style>
 </head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-leaf">🌿</div>
-        <div class="floating-leaf">🍃</div>
-        <div class="floating-leaf">🌱</div>
-        <div class="floating-leaf">🌿</div>
+  <div class="floating-elements">
+    <div class="floating-leaf">🌿</div>
+    <div class="floating-leaf">🍃</div>
+    <div class="floating-leaf">🌱</div>
+    <div class="floating-leaf">🌿</div>
+  </div>
+
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">🌱 Swachhta Campaign</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#locations">Locations</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <nav class="nav-bar">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">🌱 Swachhta Campaign</a>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="#impact">Impact</a></li>
-                <li><a href="#locations">Locations</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-            </ul>
+  <section class="hero-section" role="main">
+    <div class="hero-content">
+      <h1 class="hero-title">🌳 Tree Plantation</h1>
+      <p class="hero-subtitle">
+        Leading massive plantation drives across educational institutions and communities,
+        creating green corridors for environmental transformation.
+      </p>
+      <p class="hero-subtitle">
+        "Plant Today, Breathe Tomorrow" - When students and workers unite, forests flourish!
+      </p>
+    </div>
+  </section>
+
+  <section class="impact-section" id="impact">
+    <div class="container">
+      <h2 class="section-title">Our Green Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-card" tabindex="0">
+          <div class="stat-number">1,400</div>
+          <div class="stat-label">Trees Planted</div>
         </div>
-    </nav>
-
-    <section class="hero-section" role="main">
-        <div class="hero-content">
-            <h1 class="hero-title">🌳 Tree Plantation</h1>
-            <p class="hero-subtitle">
-                Leading massive plantation drives across educational institutions and communities,
-                creating green corridors for environmental transformation.
-            </p>
-            <p class="hero-subtitle">
-                "Plant Today, Breathe Tomorrow" - When students and workers unite, forests flourish!
-            </p>
+        <div class="stat-card" tabindex="0">
+          <div class="stat-number">2,700</div>
+          <div class="stat-label">Trees Distributed</div>
         </div>
-    </section>
-
-    <section class="impact-section" id="impact">
-        <div class="container">
-            <h2 class="section-title">Our Green Impact</h2>
-            <div class="stats-grid">
-                <div class="stat-card" tabindex="0">
-                    <div class="stat-number">1,400</div>
-                    <div class="stat-label">Trees Planted</div>
-                </div>
-                <div class="stat-card" tabindex="0">
-                    <div class="stat-number">2,700</div>
-                    <div class="stat-label">Trees Distributed</div>
-                </div>
-                <div class="stat-card" tabindex="0">
-                    <div class="stat-number">4,100</div>
-                    <div class="stat-label">Total Saplings</div>
-                </div>
-                <div class="stat-card" tabindex="0">
-                    <div class="stat-number">15</div>
-                    <div class="stat-label">Locations Covered</div>
-                </div>
-            </div>
+        <div class="stat-card" tabindex="0">
+          <div class="stat-number">4,100</div>
+          <div class="stat-label">Total Saplings</div>
         </div>
-    </section>
-
-    <section class="locations-section" id="locations">
-        <div class="container">
-            <h2 class="section-title">Plantation & Distribution Locations</h2>
-            <div class="locations-grid">
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">DAV Sawang</div>
-                    <div class="location-participants">Participants: <span class="participants-number">150</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">DAV Kathara</div>
-                    <div class="location-participants">Participants: <span class="participants-number">100</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">KB College</div>
-                    <div class="location-participants">Participants: <span class="participants-number">100</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Gayatri Mandir</div>
-                    <div class="location-participants">Participants: <span class="participants-number">300</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Tenughat</div>
-                    <div class="location-participants">Participants: <span class="participants-number">200</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Sawang</div>
-                    <div class="location-participants">Participants: <span class="participants-number">250</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Khudgada</div>
-                    <div class="location-participants">Participants: <span class="participants-number">100</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Kathara Colliery</div>
-                    <div class="location-participants">Participants: <span class="participants-number">700</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Jarangdih Colliery</div>
-                    <div class="location-participants">Participants: <span class="participants-number">700</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Govindpur Phase II</div>
-                    <div class="location-participants">Participants: <span class="participants-number">700</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">GM Unit</div>
-                    <div class="location-participants">Participants: <span class="participants-number">300</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Kathara Washery</div>
-                    <div class="location-participants">Participants: <span class="participants-number">200</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Sawang Washery</div>
-                    <div class="location-participants">Participants: <span class="participants-number">200</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Regional Store</div>
-                    <div class="location-participants">Participants: <span class="participants-number">100</span></div>
-                </div>
-                <div class="location-card" tabindex="0">
-                    <div class="location-name">Peripheral Villages</div>
-                    <div class="location-participants">Multiple village locations covered</div>
-                </div>
-            </div>
+        <div class="stat-card" tabindex="0">
+          <div class="stat-number">15</div>
+          <div class="stat-label">Locations Covered</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section class="gallery-section" id="gallery">
-        <div class="container">
-            <h2 class="section-title">Tree Plantation Gallery</h2>
-            <div class="gallery-wrapper" id="galleryCards">
-                </div>
+  <section class="locations-section" id="locations">
+    <div class="container">
+      <h2 class="section-title">Plantation & Distribution Locations</h2>
+      <div class="locations-grid">
+        <div class="location-card" tabindex="0">
+          <div class="location-name">DAV Sawang</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">150</span>
+          </div>
         </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <h2 class="section-title">Join Our Green Mission</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
-                Every tree planted is a step towards a sustainable future.
-                Together, we can create green corridors that transform our communities.
-            </p>
-            <a href="../index.html" class="cta-button" aria-label="Explore More Initiatives">Explore More Initiatives</a>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">DAV Kathara</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">100</span>
+          </div>
         </div>
-    </section>
-
-    <div class="gallery-modal" id="galleryModal" aria-modal="true" role="dialog" tabindex="-1">
-      <div class="modal-content">
-        <button class="modal-close" id="modalCloseBtn" aria-label="Close Gallery Modal">&times;</button>
-        <img class="modal-img" id="modalImg" src="" alt="">
-        <div class="modal-info">
-          <h3 class="modal-title" id="modalTitle"></h3>
-          <p class="modal-desc" id="modalDesc"></p>
-          <div class="modal-arrows">
-            <button class="modal-arrow" id="modalPrev" aria-label="Show Previous Image">&#8592;</button>
-            <div class="modal-counter" id="modalCounter" aria-live="polite"></div>
-            <button class="modal-arrow" id="modalNext" aria-label="Show Next Image">&#8594;</button>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">KB College</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">100</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Gayatri Mandir</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">300</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Tenughat</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">200</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Sawang</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">250</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Khudgada</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">100</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Kathara Colliery</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">700</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Jarangdih Colliery</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">700</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Govindpur Phase II</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">700</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">GM Unit</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">300</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Kathara Washery</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">200</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Sawang Washery</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">200</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Regional Store</div>
+          <div class="location-participants">
+            Participants: <span class="participants-number">100</span>
+          </div>
+        </div>
+        <div class="location-card" tabindex="0">
+          <div class="location-name">Peripheral Villages</div>
+          <div class="location-participants">
+            Multiple village locations covered
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Tree Plantation Gallery</h2>
+      <div class="gallery-wrapper" id="galleryCards"></div>
+    </div>
+  </section>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.nav-bar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(45, 90, 39, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
-            } else {
-                navbar.style.background = 'rgba(45, 90, 39, 0.95)';
-                navbar.style.boxShadow = 'none';
-            }
-        });
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="section-title">Join Our Green Mission</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+        Every tree planted is a step towards a sustainable future. Together, we can create
+        green corridors that transform our communities.
+      </p>
+      <a href="../index.html" class="cta-button" aria-label="Explore More Initiatives"
+        >Explore More Initiatives</a
+      >
+    </div>
+  </section>
 
-        // Animate statistics on scroll
-        const animateStats = () => {
-            const stats = document.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const target = parseInt(stat.textContent.replace(',', ''));
-                const increment = target / 100; // Animate in 100 steps
-                let current = 0;
-                let animationStarted = false; // Flag to ensure animation runs only once
+  <div
+    class="gallery-modal"
+    id="galleryModal"
+    aria-modal="true"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div class="modal-content">
+      <button
+        class="modal-close"
+        id="modalCloseBtn"
+        aria-label="Close Gallery Modal"
+      >
+        &times;
+      </button>
+      <img class="modal-img" id="modalImg" src="" alt="" />
+      <div class="modal-info">
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-arrows">
+          <button class="modal-arrow" id="modalPrev" aria-label="Show Previous Image"
+            >&#8592;</button
+          >
+          <div class="modal-counter" id="modalCounter" aria-live="polite"></div>
+          <button class="modal-arrow" id="modalNext" aria-label="Show Next Image"
+            >&#8594;</button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 
-                // Check if animation has already started for this element
-                if (stat.dataset.animated) {
-                    return; // Skip if already animated
-                }
-                stat.dataset.animated = true; // Mark as animated
-
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = current >= 1000 ?
-                        Math.floor(current).toLocaleString() :
-                        Math.floor(current);
-                }, 20); // 20ms interval for smoother animation
-            });
-        };
-
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('impact-section')) {
-                        animateStats();
-                        // observer.unobserve(entry.target); // Optional: Unobserve after animation if it should only run once
-                    }
-                }
-            });
-        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
-
-        document.querySelectorAll('.impact-section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Gallery Data
-        const galleryImages = [
-            { src: "images/TP1.jpeg",  title: "Distribution of Fruit Bearing Trees at GM Office", desc: "Fruit trees provided to community leaders at GM Office.", alt: "Sapling distribution at GM Office" },
-            { src: "images/TP2.jpeg",  title: "Fruit Trees to be Distributed", desc: "Collection of fruit trees ready for distribution to beneficiaries.", alt: "Fruit trees arranged for distribution" },
-            { src: "images/TP3.jpeg",  title: "Plantation at KB College, Bermo", desc: "Students and volunteers planting saplings at KB College, Bermo.", alt: "Tree plantation at KB College, Bermo" },
-            { src: "images/TP4.jpeg",  title: "Distribution of Trees at DAV Kathara", desc: "Community engagement: saplings distributed at DAV Kathara campus.", alt: "Tree sapling distribution at DAV Kathara" },
-            { src: "images/TP5.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Launch of plantation project at DAV Sawang, uniting students and staff.", alt: "Plantation event at DAV Sawang" },
-            { src: "images/TP6.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Continued effort: more trees planted at DAV Sawang.", alt: "Tree plantation activity at DAV Sawang" },
-            { src: "images/TP7.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Volunteers prepare and plant saplings at DAV Sawang.", alt: "Volunteers planting trees at DAV Sawang" },
-            { src: "images/TP8.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Sustained plantation initiatives with local participation at DAV Sawang.", alt: "Ongoing plantation at DAV Sawang" },
-            { src: "images/TP9.jpeg",  title: "Tree Plantation at DAV Sawang", desc: "Community and students collaborating on tree plantation at DAV Sawang.", alt: "Community involvement at DAV Sawang plantation" },
-            { src: "images/TP10.jpeg", title: "Plantation at KB College, Bermo", desc: "Closing phase of green corridor project at KB College, Bermo.", alt: "Final phase plantation at KB College" }
-        ];
-
-        // Populate gallery cards
-        const galleryContainer = document.getElementById('galleryCards');
-        galleryImages.forEach((img, i) => {
-            const card = document.createElement('div');
-            card.className = 'gallery-card';
-            card.tabIndex = 0; // Make div focusable
-            card.setAttribute('aria-label', `${img.title}. ${img.desc}`); // Comprehensive ARIA label
-
-            const imageEl = document.createElement('img');
-            imageEl.src = img.src;
-            imageEl.alt = img.alt;
-
-            const descDiv = document.createElement('div');
-            descDiv.className = 'card-desc';
-            descDiv.innerText = img.title;
-
-            card.appendChild(imageEl);
-            card.appendChild(descDiv);
-
-            card.addEventListener('click', () => openModal(i));
-            card.addEventListener('keydown', (e) => {
-                if(e.key === 'Enter' || e.key === ' ') {
-                    openModal(i);
-                }
-            });
-
-            galleryContainer.appendChild(card);
-        });
-
-        // Modal controls
-        const galleryModal = document.getElementById('galleryModal');
-        const modalImg = document.getElementById('modalImg');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDesc = document.getElementById('modalDesc');
-        const modalCounter = document.getElementById('modalCounter');
-        const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const modalPrevBtn = document.getElementById('modalPrev');
-        const modalNextBtn = document.getElementById('modalNext');
-
-        let currentImgIdx = 0;
-        let focusedElementBeforeModal = null; // To store focused element before modal opens
-
-        function openModal(idx) {
-            focusedElementBeforeModal = document.activeElement; // Store currently focused element
-            currentImgIdx = idx;
-            updateModal();
-            galleryModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
-            modalCloseBtn.focus(); // Focus close button for immediate interaction
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         }
+      });
+    });
 
-        function closeModal() {
-            galleryModal.classList.remove('active');
-            document.body.style.overflow = ''; // Restore background scroll
-            if (focusedElementBeforeModal) {
-                focusedElementBeforeModal.focus(); // Return focus to the element that opened the modal
-                focusedElementBeforeModal = null; // Clear the stored element
+    // Navbar scroll effect
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".nav-bar");
+      if (window.scrollY > 50) {
+        navbar.style.background = "rgba(45, 90, 39, 0.98)";
+        navbar.style.boxShadow = "0 2px 20px rgba(0,0,0,0.3)";
+      } else {
+        navbar.style.background = "rgba(45, 90, 39, 0.95)";
+        navbar.style.boxShadow = "none";
+      }
+    });
+
+    // Animate statistics on scroll
+    const animateStats = () => {
+      const stats = document.querySelectorAll(".stat-number");
+      stats.forEach((stat) => {
+        const target = parseInt(stat.textContent.replace(",", ""));
+        const increment = target / 100;
+        let current = 0;
+
+        if (stat.dataset.animated) {
+          return;
+        }
+        stat.dataset.animated = true;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          stat.textContent =
+            current >= 1000
+              ? Math.floor(current).toLocaleString()
+              : Math.floor(current);
+        }, 20);
+      });
+    };
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target.classList.contains("impact-section")) {
+              animateStats();
             }
-        }
-
-        function updateModal() {
-            const img = galleryImages[currentImgIdx];
-            modalImg.src = img.src;
-            modalImg.alt = img.alt;
-            modalTitle.innerText = img.title;
-            modalDesc.innerText = img.desc;
-            modalCounter.innerText = `Image ${currentImgIdx + 1} of ${galleryImages.length}`;
-        }
-
-        function showNext() {
-            currentImgIdx = (currentImgIdx + 1) % galleryImages.length;
-            updateModal();
-        }
-
-        function showPrev() {
-            currentImgIdx = (currentImgIdx - 1 + galleryImages.length) % galleryImages.length;
-            updateModal();
-        }
-
-        // Event Listeners for Modal Buttons
-        modalNextBtn.addEventListener('click', showNext);
-        modalPrevBtn.addEventListener('click', showPrev);
-        modalCloseBtn.addEventListener('click', closeModal);
-
-        // Close modal when clicking outside content
-        galleryModal.addEventListener('click', function(e) {
-            if (e.target === galleryModal) {
-                closeModal();
-            }
+          }
         });
+      },
+      { threshold: 0.5 }
+    );
 
-        // Keyboard navigation for modal
-        document.addEventListener('keydown', function(e) {
-            if (!galleryModal.classList.contains('active')) return; // Only apply if modal is active
+    document.querySelectorAll(".impact-section").forEach((section) => {
+      observer.observe(section);
+    });
 
-            if (e.key === 'Escape') {
-                closeModal();
-            } else if (e.key === 'ArrowRight') {
-                showNext();
-            } else if (e.key === 'ArrowLeft') {
-                showPrev();
-            }
-        });
+    // Gallery Data
+    const galleryImages = [
+      {
+        src: "images/TP1.jpeg",
+        title: "Distribution of Fruit Bearing Trees at GM Office",
+        desc: "Fruit trees provided to community leaders at GM Office.",
+        alt: "Sapling distribution at GM Office",
+      },
+      {
+        src: "images/TP2.jpeg",
+        title: "Fruit Trees to be Distributed",
+        desc: "Collection of fruit trees ready for distribution to beneficiaries.",
+        alt: "Fruit trees arranged for distribution",
+      },
+      {
+        src: "images/TP3.jpeg",
+        title: "Plantation at KB College, Bermo",
+        desc: "Students and volunteers planting saplings at KB College, Bermo.",
+        alt: "Tree plantation at KB College, Bermo",
+      },
+      {
+        src: "images/TP4.jpeg",
+        title: "Distribution of Trees at DAV Kathara",
+        desc: "Community engagement: saplings distributed at DAV Kathara campus.",
+        alt: "Tree sapling distribution at DAV Kathara",
+      },
+      {
+        src: "images/TP5.jpeg",
+        title: "Tree Plantation at DAV Sawang",
+        desc: "Launch of plantation project at DAV Sawang, uniting students and staff.",
+        alt: "Plantation event at DAV Sawang",
+      },
+      {
+        src: "images/TP6.jpeg",
+        title: "Tree Plantation at DAV Sawang",
+        desc: "Continued effort: more trees planted at DAV Sawang.",
+        alt: "Tree plantation activity at DAV Sawang",
+      },
+      {
+        src: "images/TP7.jpeg",
+        title: "Tree Plantation at DAV Sawang",
+        desc: "Volunteers prepare and plant saplings at DAV Sawang.",
+        alt: "Volunteers planting trees at DAV Sawang",
+      },
+      {
+        src: "images/TP8.jpeg",
+        title: "Tree Plantation at DAV Sawang",
+        desc: "Sustained plantation initiatives with local participation at DAV Sawang.",
+        alt: "Ongoing plantation at DAV Sawang",
+      },
+      {
+        src: "images/TP9.jpeg",
+        title: "Tree Plantation at DAV Sawang",
+        desc: "Community and students collaborating on tree plantation at DAV Sawang.",
+        alt: "Community involvement at DAV Sawang plantation",
+      },
+      {
+        src: "images/TP10.jpeg",
+        title: "Plantation at KB College, Bermo",
+        desc: "Closing phase of green corridor project at KB College, Bermo.",
+        alt: "Final phase plantation at KB College",
+      },
+    ];
 
-        // Accessibility focus trap for modal
-        galleryModal.addEventListener('keydown', function(e) {
-            if (!galleryModal.classList.contains('active') || e.key !== 'Tab') return;
+    // Populate gallery cards
+    const galleryContainer = document.getElementById("galleryCards");
+    galleryImages.forEach((img, i) => {
+      const card = document.createElement("div");
+      card.className = "gallery-card";
+      card.tabIndex = 0;
+      card.setAttribute("aria-label", `${img.title}. ${img.desc}`);
 
-            const focusableElements = galleryModal.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-            );
-            const firstFocusable = focusableElements[0];
-            const lastFocusable = focusableElements[focusableElements.length - 1];
+      const imageEl = document.createElement("img");
+      imageEl.src = img.src;
+      imageEl.alt = img.alt;
 
-            if (e.shiftKey) { // Shift + Tab
-                if (document.activeElement === firstFocusable) {
-                    lastFocusable.focus();
-                    e.preventDefault();
-                }
-            } else { // Tab
-                if (document.activeElement === lastFocusable) {
-                    firstFocusable.focus();
-                    e.preventDefault();
-                }
-            }
-        });
-    </script>
+      const descDiv = document.createElement("div");
+      descDiv.className = "card-desc";
+      descDiv.innerText = img.title;
+
+      card.appendChild(imageEl);
+      card.appendChild(descDiv);
+
+      card.addEventListener("click", () => openModal(i));
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          openModal(i);
+        }
+      });
+
+      galleryContainer.appendChild(card);
+    });
+
+    // Modal controls
+    const galleryModal = document.getElementById("galleryModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalCounter = document.getElementById("modalCounter");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+    const modalPrevBtn = document.getElementById("modalPrev");
+    const modalNextBtn = document.getElementById("modalNext");
+
+    let currentImgIdx = 0;
+    let focusedElementBeforeModal = null;
+
+    function openModal(idx) {
+      focusedElementBeforeModal = document.activeElement;
+      currentImgIdx = idx;
+      updateModal();
+      galleryModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+      modalCloseBtn.focus();
+    }
+
+    function closeModal() {
+      galleryModal.classList.remove("active");
+      document.body.style.overflow = "";
+      if (focusedElementBeforeModal) {
+        focusedElementBeforeModal.focus();
+        focusedElementBeforeModal = null;
+      }
+    }
+
+    function updateModal() {
+      const img = galleryImages[currentImgIdx];
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modalTitle.innerText = img.title;
+      modalDesc.innerText = img.desc;
+      modalCounter.innerText = `Image ${currentImgIdx + 1} of ${galleryImages.length}`;
+    }
+
+    function showNext() {
+      currentImgIdx = (currentImgIdx + 1) % galleryImages.length;
+      updateModal();
+    }
+
+    function showPrev() {
+      currentImgIdx = (currentImgIdx - 1 + galleryImages.length) % galleryImages.length;
+      updateModal();
+    }
+
+    // Event Listeners for Modal Buttons
+    modalNextBtn.addEventListener("click", showNext);
+    modalPrevBtn.addEventListener("click", showPrev);
+    modalCloseBtn.addEventListener("click", closeModal);
+
+    // Close modal when clicking outside content
+    galleryModal.addEventListener("click", function (e) {
+      if (e.target === galleryModal) {
+        closeModal();
+      }
+    });
+
+    // Keyboard navigation for modal
+    document.addEventListener("keydown", function (e) {
+      if (!galleryModal.classList.contains("active")) return;
+
+      if (e.key === "Escape") {
+        closeModal();
+      } else if (e.key === "ArrowRight") {
+        showNext();
+      } else if (e.key === "ArrowLeft") {
+        showPrev();
+      }
+    });
+
+    // Accessibility focus trap for modal
+    galleryModal.addEventListener("keydown", function (e) {
+      if (!galleryModal.classList.contains("active") || e.key !== "Tab") return;
+
+      const focusableElements = galleryModal.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstFocusable) {
+          lastFocusable.focus();
+          e.preventDefault();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastFocusable) {
+          firstFocusable.focus();
+          e.preventDefault();
+        }
+      }
+    });
+  </script>
 </body>
 </html>
